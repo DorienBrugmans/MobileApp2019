@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG,"onCreate: started.");
         ImageView firstImage=(ImageView) findViewById(R.id.image);
 
-        int imageResource=getResources().getIdentifier("@drawable/foto",null,this.getPackageName());
+        int imageResource=getResources().getIdentifier("@assets/foto",null,this.getPackageName());
         firstImage.setImageResource(imageResource);
     }
 }
