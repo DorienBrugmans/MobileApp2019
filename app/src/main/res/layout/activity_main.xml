@@ -50,11 +50,11 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:src="@drawable/foto"
-                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    >
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/foto">
 
                 </ImageView>
 
