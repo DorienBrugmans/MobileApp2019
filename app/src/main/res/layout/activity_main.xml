@@ -20,13 +20,12 @@
         android:id="@+id/txtTable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="30dp"
         android:background="@color/colorPrimaryDark"
         android:text="SCAN TABLE"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
-        android:textSize="30dp"
-        />
+        android:textSize="30dp" />
 
     <SurfaceView android:id="@+id/camera"
         android:layout_width="match_parent"
