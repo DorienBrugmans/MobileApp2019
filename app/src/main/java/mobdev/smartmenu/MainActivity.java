@@ -2,7 +2,11 @@ package mobdev.smartmenu;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -78,21 +82,21 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
-            // QR CODE DETECTION METHOD
             @Override
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> qrcodes = detections.getDetectedItems();
                 if (qrcodes.size() != 0){
-                    txtResult.post(new Runnable() {
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
                         @Override
                         public void run() {
                             Vibrator vibrator = (Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                             vibrator.vibrate(1000);
-                            txtResult.setText(qrcodes.valueAt(0).displayValue);
+                            saveData(qrcodes.valueAt(0).displayValue);
                             // STOP CAMERA SO THE USER CAN'T SCAN TWICE
                             cameraSource.stop();
                             // HIDE CONTAINER
                             cameraPreview.setVisibility(View.INVISIBLE);
+                            startActivity(new Intent(MainActivity.this, MasterActivity.class));
                         }
                     });
                 }
@@ -118,5 +122,13 @@ public class MainActivity extends AppCompatActivity {
             }
             break;
         }
+    }
+
+    public void saveData(String tafelId) {
+        SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("tafelID", tafelId);
+        editor.commit();
     }
 }
