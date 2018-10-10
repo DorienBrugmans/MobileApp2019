@@ -36,7 +36,6 @@
         <activity android:name=".AccountLoginActivity" />
         <activity android:name=".AccountSignUpActivity" />
         <activity android:name=".ResetPasswordActivity" />
-        <activity android:name=".WelcomeActivity"></activity>
     </application>
 
 </manifest>
