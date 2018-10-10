@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mobdev.smartmenu">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
@@ -31,7 +32,11 @@
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="barcode" />
 
-        <activity android:name=".MasterActivity"></activity>
+        <activity android:name=".MasterActivity" />
+        <activity android:name=".AccountLoginActivity" />
+        <activity android:name=".AccountSignUpActivity" />
+        <activity android:name=".ResetPasswordActivity" />
+        <activity android:name=".WelcomeActivity"></activity>
     </application>
 
 </manifest>
