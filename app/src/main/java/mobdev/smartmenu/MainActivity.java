@@ -16,6 +16,7 @@ import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.vision.CameraSource;
@@ -33,10 +34,20 @@ public class MainActivity extends AppCompatActivity {
     CameraSource cameraSource;
     final int RequestCameraPermissionID = 1001;
 
+    Button btnNext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        btnNext=(Button) findViewById(R.id.btn_next) ;
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveData("VIP");
+                startActivity(new Intent(MainActivity.this, MasterActivity.class));
+            }
+        });
 
         cameraPreview = (SurfaceView) findViewById(R.id.camera);
         txtResult = (TextView) findViewById(R.id.txtTable);
