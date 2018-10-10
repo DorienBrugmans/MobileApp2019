@@ -7,9 +7,8 @@
     tools:context=".CategoriesFragment">
 
     <ScrollView
-        android:id="@+id/scroll"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
         <LinearLayout
             android:id="@+id/linerlayout"
             android:layout_width="match_parent"
