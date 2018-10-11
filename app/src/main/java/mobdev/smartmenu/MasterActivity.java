@@ -1,8 +1,9 @@
 package mobdev.smartmenu;
 
-import android.app.FragmentManager;
+
 import android.content.SharedPreferences;
-import android.app.FragmentTransaction;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -25,7 +26,7 @@ public class MasterActivity extends AppCompatActivity {
         txtTafel.setText("" + sharedPreferences.getString("tafelID", ""));
 
         CategoriesFragment categoriesFragment = new CategoriesFragment();
-        fragmentManager = getFragmentManager();
+        fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragmentPlace, categoriesFragment);
         fragmentTransaction.commit();
