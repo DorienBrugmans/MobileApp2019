@@ -92,7 +92,7 @@ public class CategoriesFragment extends Fragment implements AdapterView.OnItemCl
                     public void onClick(View view, int position, boolean isLongClick) {
                         ProductsFragment productsFragment = new ProductsFragment();
                         Bundle bundle = new Bundle();
-                        bundle.putInt("categoryID", position);
+                        bundle.putString("categoryID", adapter.getRef(position).getKey());
 
                         productsFragment.setArguments(bundle);
                         fragmentManager = getActivity().getSupportFragmentManager();
