@@ -32,7 +32,8 @@
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="barcode" />
 
-        <activity android:name=".Activity.MasterActivity" />
+        <activity android:name=".Activity.MasterActivity"
+            android:windowSoftInputMode="stateUnchanged|adjustPan"/>
         <activity android:name=".Activity.AccountLoginActivity" />
         <activity android:name=".Activity.AccountSignUpActivity" />
         <activity android:name=".Activity.ResetPasswordActivity" />
