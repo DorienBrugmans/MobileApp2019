@@ -1,10 +1,13 @@
-package mobdev.smartmenu;
+package mobdev.smartmenu.ViewHolder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import mobdev.smartmenu.ItemClickListener;
+import mobdev.smartmenu.R;
 
 public class ProductDetailViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public TextView product_name;

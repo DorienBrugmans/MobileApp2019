@@ -1,4 +1,4 @@
-package mobdev.smartmenu;
+package mobdev.smartmenu.Activity;
 
 import android.Manifest;
 import android.content.Context;
@@ -25,6 +25,8 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
+
+import mobdev.smartmenu.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package mobdev.smartmenu;
+package mobdev.smartmenu.Fragment;
 
 
 import android.os.Bundle;
@@ -13,14 +13,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
-import model.Category;
+import mobdev.smartmenu.ItemClickListener;
+import mobdev.smartmenu.R;
+import mobdev.smartmenu.ViewHolder.ProductViewHolder;
 import model.Food;
 
 

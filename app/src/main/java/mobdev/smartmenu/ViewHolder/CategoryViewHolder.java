@@ -1,19 +1,22 @@
-package mobdev.smartmenu;
+package mobdev.smartmenu.ViewHolder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    public TextView product_name;
-    public ImageView product_image;
+import mobdev.smartmenu.ItemClickListener;
+import mobdev.smartmenu.R;
+
+public class CategoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public TextView category_name;
+    public ImageView category_image;
     private ItemClickListener itemClickListener;
 
-    public ProductViewHolder(View itemView){
+    public CategoryViewHolder(View itemView){
         super(itemView);
-        product_image=(ImageView)itemView.findViewById(R.id.productImage);
-        product_name=(TextView)itemView.findViewById(R.id.productName);
+        category_image=(ImageView)itemView.findViewById(R.id.categoryImage);
+        category_name=(TextView)itemView.findViewById(R.id.categoryName);
 
         itemView.setOnClickListener(this);
     }

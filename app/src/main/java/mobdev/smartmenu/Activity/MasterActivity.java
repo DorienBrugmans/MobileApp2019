@@ -1,4 +1,4 @@
-package mobdev.smartmenu;
+package mobdev.smartmenu.Activity;
 
 
 import android.content.SharedPreferences;
@@ -7,6 +7,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import mobdev.smartmenu.Fragment.CategoriesFragment;
+import mobdev.smartmenu.R;
 
 public class MasterActivity extends AppCompatActivity {
 

@@ -13,14 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Splashscreen">
+        <activity android:name=".Activity.Splashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,10 +32,10 @@
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="barcode" />
 
-        <activity android:name=".MasterActivity" />
-        <activity android:name=".AccountLoginActivity" />
-        <activity android:name=".AccountSignUpActivity" />
-        <activity android:name=".ResetPasswordActivity" />
+        <activity android:name=".Activity.MasterActivity" />
+        <activity android:name=".Activity.AccountLoginActivity" />
+        <activity android:name=".Activity.AccountSignUpActivity" />
+        <activity android:name=".Activity.ResetPasswordActivity" />
     </application>
 
 </manifest>

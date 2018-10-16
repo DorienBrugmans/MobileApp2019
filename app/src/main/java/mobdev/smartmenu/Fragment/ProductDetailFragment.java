@@ -1,4 +1,4 @@
-package mobdev.smartmenu;
+package mobdev.smartmenu.Fragment;
 
 
 import android.os.Bundle;
@@ -11,15 +11,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
+import mobdev.smartmenu.ItemClickListener;
+import mobdev.smartmenu.R;
+import mobdev.smartmenu.ViewHolder.ProductDetailViewHolder;
 import model.Food;
 
 
@@ -81,7 +81,12 @@ public class ProductDetailFragment  extends Fragment  {
                 Picasso.with(getActivity()).load(model.getImage()).into(viewHolder.product_image);
                 viewHolder.product_description.setText(model.getDescription());
                 viewHolder.product_price.setText(model.getPrice());
+                viewHolder.setItemClickListener(new ItemClickListener() {
+                    @Override
+                    public void onClick(View view, int position, boolean isLongClick) {
 
+                    }
+                });
             }
         };
 

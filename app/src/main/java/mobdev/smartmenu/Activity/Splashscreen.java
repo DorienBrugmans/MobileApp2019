@@ -1,4 +1,4 @@
-package mobdev.smartmenu;
+package mobdev.smartmenu.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+
+import mobdev.smartmenu.R;
 
 public class Splashscreen extends Activity {
     Thread splashTread;
