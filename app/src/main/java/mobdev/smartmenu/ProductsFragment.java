@@ -59,7 +59,7 @@ public class ProductsFragment  extends Fragment implements AdapterView.OnItemCli
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+              // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_products, container, false);
         TextView txt = (TextView) view.findViewById(R.id.categoryID);
 
@@ -85,7 +85,19 @@ public class ProductsFragment  extends Fragment implements AdapterView.OnItemCli
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                      Toast.makeText(getActivity(),String.format("%s|%s",adapter.getRef(position).getKey(),model.getName()),Toast.LENGTH_SHORT).show();
+                        ProductDetailFragment productDetailFragment = new ProductDetailFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("productID", adapter.getRef(position).getKey());
+
+                        productDetailFragment.setArguments(bundle);
+                        fragmentManager = getActivity().getSupportFragmentManager();
+
+                        fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.fragmentPlace, productDetailFragment);
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();
+
+
                     }
                 });
 

@@ -27,7 +27,7 @@ import model.Category;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CategoriesFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class CategoriesFragment extends Fragment {
 
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
@@ -66,7 +66,7 @@ public class CategoriesFragment extends Fragment implements AdapterView.OnItemCl
         return myFragment;
     }
 
-    @Override
+ /*   @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         ProductsFragment productsFragment = new ProductsFragment();
         Bundle bundle = new Bundle();
@@ -79,7 +79,7 @@ public class CategoriesFragment extends Fragment implements AdapterView.OnItemCl
         fragmentTransaction.replace(R.id.fragmentPlace, productsFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-    }
+    }*/
     private void loadCategories() {
         adapter=new FirebaseRecyclerAdapter<Category, CategoryViewHolder>(Category.class,R.layout.listview_item_layout,CategoryViewHolder.class,categories) {
             @Override
