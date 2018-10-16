@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="@drawable/background"
-    tools:context=".Activity.MasterActivity">
+    tools:context=".activity.MasterActivity">
 
     <RelativeLayout
         android:id="@+id/header"
