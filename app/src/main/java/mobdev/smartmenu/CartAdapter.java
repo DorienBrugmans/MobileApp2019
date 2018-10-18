@@ -2,42 +2,73 @@ package mobdev.smartmenu;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
-import java.util.LinkedList;
 import java.util.List;
 
-import mobdev.smartmenu.viewholder.CartViewHolder;
+import mobdev.smartmenu.activity.MasterActivity;
 import model.CartItem;
 
-public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> {
+public class CartAdapter extends RecyclerView.Adapter {
     private List<CartItem> cart;
 
-    public CartAdapter(List<CartItem>carts) {
-        cart=carts;
-    }
 
     @NonNull
     @Override
-    public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = new RecyclerView(parent.getContext());
-        CartViewHolder viewHolder = new CartViewHolder(view);
-
-        return viewHolder;
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.product_cart_layout,parent,false);
+        return new CartViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
-        holder.cart_count.setText(cart.get(position).getProductCount());
-        Picasso.with(holder.cart_product_image.getContext()).load(cart.get(position).getProduct().getImage()).fit().centerInside().into((Target) holder.cart_product_image);
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        ((CartViewHolder) holder).bindView(position);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return MasterActivity.cart.size();
     }
+
+    private class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        public ImageView cart_product_image;
+        public TextView cart_product_name;
+        public Button cart_count_min;
+        public Button cart_count_plus;
+        public TextView cart_count;
+        private ItemClickListener itemClickListener;
+
+        public CartViewHolder(View itemView) {
+            super(itemView);
+            cart_product_image = (ImageView) itemView.findViewById(R.id.productCartImage);
+            cart_product_name = (TextView) itemView.findViewById(R.id.productCartName);
+            cart_count_min = (Button) itemView.findViewById(R.id.minCount);
+            cart_count_plus = (Button) itemView.findViewById(R.id.minPlus);
+            cart_count = (TextView) itemView.findViewById(R.id.productCartCount);
+        }
+
+        public void setItemClickListener(ItemClickListener itemClickListener) {
+            this.itemClickListener = itemClickListener;
+        }
+        public void bindView(int position){
+            cart_count.setText(MasterActivity.cart.get(position).getProductCount());
+            cart_product_name.setText(MasterActivity.cart.get(position).getProduct().getName());
+            Picasso.with(itemView.getContext()).load(MasterActivity.cart.get(position).getProduct().getImage()).into(cart_product_image);
+            //cart_product_image.setImageResource(Integer.parseInt(MasterActivity.cart.get(position).getProduct().getImage()));
+        }
+
+        @Override
+        public void onClick(View view) {
+            itemClickListener.onClick(view,getAdapterPosition(),false);
+        }
+    }
+
 }

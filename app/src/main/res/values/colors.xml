@@ -9,5 +9,8 @@
     <color name="colorBrown">#e0716152</color>
     <color name="colorRed">#e0f50712</color>
     <color name="colorGold">#f2af58</color>
+    <color name="colorGoldTransparent">#80f2af58</color>
+    <color name="colorWhiteTransparent">#80FFFFFF</color>
+    <color name="colorRedTransparent">#80f50712</color>
 
 </resources>

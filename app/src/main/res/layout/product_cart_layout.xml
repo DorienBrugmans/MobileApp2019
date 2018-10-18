@@ -2,7 +2,8 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,12 +23,12 @@
             android:orientation="vertical"
             android:gravity="center_vertical">
 
-            //name
+
             <TextView
                 android:id="@+id/productCartName"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:text="9999"
+                android:textSize="20dp"
                 android:textAlignment="center"/>
 
             <LinearLayout
@@ -42,6 +43,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:textAlignment="center"
+                    android:background="@color/colorRed"
+                    android:textSize="15dp"
                     android:text="-"
                     android:id="@+id/minCount"
                     android:layout_marginRight="15dp"/>
@@ -50,12 +53,14 @@
                     android:id="@+id/productCartCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="5" />
+                    android:textSize="20dp"/>
 
                 <Button
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:text="+"
+                    android:textSize="15dp"
+                    android:background="@color/colorRed"
                     android:id="@+id/minPlus"
                     android:textAlignment="center"
                     android:layout_marginLeft="15dp"/>

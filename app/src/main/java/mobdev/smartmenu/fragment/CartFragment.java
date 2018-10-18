@@ -11,18 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.squareup.picasso.Picasso;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
 import mobdev.smartmenu.CartAdapter;
-import mobdev.smartmenu.ItemClickListener;
 import mobdev.smartmenu.R;
 import mobdev.smartmenu.activity.MasterActivity;
-import mobdev.smartmenu.viewholder.CartViewHolder;
-import mobdev.smartmenu.viewholder.ProductViewHolder;
 import model.CartItem;
-import model.Food;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,7 +30,11 @@ public class CartFragment extends Fragment {
     View myFragment;
     RecyclerView cartRecyclerView;
     LinearLayoutManager layoutManager;
-
+    CartViewHolder holder;
+    RecyclerView productDetail;
+    FirebaseRecyclerAdapter<CartItem, CartViewHolder> adapter;
+    FirebaseDatabase database;
+    DatabaseReference product;
     public CartFragment() {
         // Required empty public constructor
     }
@@ -51,10 +52,12 @@ public class CartFragment extends Fragment {
         myFragment = inflater.inflate(R.layout.fragment_cart, container, false);
 
         cartRecyclerView = (RecyclerView) myFragment.findViewById(R.id.layoutCart);
-        cartRecyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(container.getContext());
-        cartRecyclerView.setLayoutManager(layoutManager);
-        cartRecyclerView.setAdapter(new CartAdapter(☻));
+
+        CartAdapter cartAdapter=new CartAdapter();
+        cartRecyclerView.setAdapter(cartAdapter);
+        RecyclerView.LayoutManager lytManager=new LinearLayoutManager(getActivity());
+        cartRecyclerView.setLayoutManager(lytManager);
+
 
         return myFragment;
     }
