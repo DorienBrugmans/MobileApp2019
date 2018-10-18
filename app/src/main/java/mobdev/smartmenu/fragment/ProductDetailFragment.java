@@ -93,7 +93,7 @@ public class ProductDetailFragment extends Fragment implements AdapterView.OnIte
                 viewHolder.cartBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        MasterActivity.cart.add(new CartItem(productId,viewHolder.product_count.getText().toString()));
+                        MasterActivity.cart.add(new CartItem(model,viewHolder.product_count.getText().toString()));
                         Toast.makeText(getActivity(), MasterActivity.cart.get(0).getProductCount()+" x "+viewHolder.product_name.getText().toString()+" added to cart..", Toast.LENGTH_SHORT).show();
                     }
                 });

@@ -1,23 +1,20 @@
 package model;
 
 public class CartItem {
-    private String productId;
+    private Food product;
     private String productCount;
 
-    public CartItem() {
-    }
-
-    public CartItem(String productId, String productCount) {
-        this.productId = productId;
+    public CartItem(Food product, String productCount) {
+        this.product = product;
         this.productCount = productCount;
     }
 
-    public String getProductId() {
-        return productId;
+    public Food getProduct() {
+        return product;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setProduct(Food productId) {
+        this.product = product;
     }
 
     public String getProductCount() {
