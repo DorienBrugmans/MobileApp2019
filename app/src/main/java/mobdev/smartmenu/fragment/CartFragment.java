@@ -30,9 +30,8 @@ public class CartFragment extends Fragment {
     View myFragment;
     RecyclerView cartRecyclerView;
     LinearLayoutManager layoutManager;
-    CartViewHolder holder;
+
     RecyclerView productDetail;
-    FirebaseRecyclerAdapter<CartItem, CartViewHolder> adapter;
     FirebaseDatabase database;
     DatabaseReference product;
     public CartFragment() {
