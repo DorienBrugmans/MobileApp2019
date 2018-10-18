@@ -90,13 +90,13 @@ public class ProductDetailFragment extends Fragment implements AdapterView.OnIte
                 Picasso.with(getActivity()).load(model.getImage()).into(viewHolder.product_image);
                 viewHolder.product_description.setText(model.getDescription());
                 viewHolder.product_price.setText(model.getPrice());
-                viewHolder.cartBtn.setOnClickListener(new View.OnClickListener() {
+                /*viewHolder.cartBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         MasterActivity.cart.add(new CartItem(model,viewHolder.product_count.getText().toString()));
                         Toast.makeText(getActivity(), MasterActivity.cart.get(0).getProductCount()+" x "+viewHolder.product_name.getText().toString()+" added to cart..", Toast.LENGTH_SHORT).show();
                     }
-                });
+                });*/
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
@@ -104,6 +104,19 @@ public class ProductDetailFragment extends Fragment implements AdapterView.OnIte
                     }
                 });
 
+                viewHolder.cartBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        MasterActivity.cart.add(new CartItem(model,viewHolder.product_count.getText().toString()));
+                        CartFragment productDetailFragment = new CartFragment();
+
+                        fragmentManager = getActivity().getSupportFragmentManager();
+
+                        fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.fragmentPlace, productDetailFragment);
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();  }
+                });
 
             }
         };

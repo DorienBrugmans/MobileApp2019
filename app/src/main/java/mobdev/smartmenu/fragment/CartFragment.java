@@ -15,6 +15,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import mobdev.smartmenu.CartAdapter;
 import mobdev.smartmenu.ItemClickListener;
 import mobdev.smartmenu.R;
 import mobdev.smartmenu.activity.MasterActivity;
@@ -32,7 +33,6 @@ public class CartFragment extends Fragment {
     View myFragment;
     RecyclerView cartRecyclerView;
     LinearLayoutManager layoutManager;
-    RecyclerView.Adapter<CartItem> adapter;
 
     public CartFragment() {
         // Required empty public constructor
@@ -54,44 +54,11 @@ public class CartFragment extends Fragment {
         cartRecyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(container.getContext());
         cartRecyclerView.setLayoutManager(layoutManager);
-
-        loadProducts();
+        cartRecyclerView.setAdapter(new CartAdapter(☻));
 
         return myFragment;
     }
 
-    private void loadProducts() {
-        adapter=new RecyclerView.Adapter<CartItem>(CartItem.class,R.layout.product_cart_layout,CartViewHolder.class,cart) {
-            @Override
-            protected void populateViewHolder(CartViewHolder viewHolder, final CartItem model, int position) {
-                viewHolder.cart_count.setText(model.getProductCount());
-                viewHolder.cart_product_name.setText(model.getProduct().getName());
-
-               /* viewHolder.setItemClickListener(new ItemClickListener() {
-                    @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-                        ProductDetailFragment productDetailFragment = new ProductDetailFragment();
-                        Bundle bundle = new Bundle();
-                        bundle.putString("productID", adapter.getRef(position).getKey());
-
-                        productDetailFragment.setArguments(bundle);
-                        fragmentManager = getActivity().getSupportFragmentManager();
-
-                        fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.fragmentPlace, productDetailFragment);
-                        fragmentTransaction.addToBackStack(null);
-                        fragmentTransaction.commit();
-
-
-                    }
-                });*/
-
-            }
-        };
-
-        adapter.notifyDataSetChanged();
-        cartRecyclerView.setAdapter(adapter);
-    }
 
 }
 

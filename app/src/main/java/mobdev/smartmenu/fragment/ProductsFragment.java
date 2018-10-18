@@ -62,11 +62,9 @@ public class ProductsFragment  extends Fragment implements AdapterView.OnItemCli
                              Bundle savedInstanceState) {
               // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_products, container, false);
-        TextView txt = (TextView) view.findViewById(R.id.categoryID);
 
         Bundle bundle = this.getArguments();
 
-        txt.setText( "category : " + bundle.getString("categoryID", "0"));
         categoryId=bundle.getString("categoryID","0");
         listProducts=view.findViewById(R.id.listProduct);
         listProducts.setHasFixedSize(true);
