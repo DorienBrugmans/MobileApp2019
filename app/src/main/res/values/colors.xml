@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    // no statusbar
+    <color name="colorPrimaryDark">#80000000</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorWhite">#FFF</color>
+    <color name="colorBlack">#000</color>
+    <color name="colorBrown">#e0716152</color>
+    <color name="colorRed">#e0f50712</color>
+    <color name="colorGold">#f2af58</color>
+    <color name="colorGoldTransparent">#80f2af58</color>
+    <color name="colorWhiteTransparent">#80FFFFFF</color>
+    <color name="colorRedTransparent">#80f50712</color>
+
 </resources>

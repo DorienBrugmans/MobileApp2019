@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:background="@color/colorWhiteTransparent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/productCartImage"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_weight=".50" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_weight=".50"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+
+
+            <TextView
+                android:id="@+id/productCartName"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:textSize="20dp"
+                android:textColor="@color/colorRed"
+                android:textAlignment="center"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:textAlignment="center"
+                android:gravity="center_horizontal">
+
+                //count
+                <Button
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:textAlignment="center"
+                    android:background="@color/colorRed"
+                    android:textSize="15dp"
+                    android:text="-"
+                    android:textColor="@color/colorGold"
+                    android:id="@+id/minCount"
+                    android:layout_marginRight="15dp"/>
+
+                <TextView
+                    android:id="@+id/productCartCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:textColor="@color/colorRed"
+                    android:textSize="20dp"/>
+
+                <Button
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="+"
+                    android:textSize="15dp"
+                    android:background="@color/colorRed"
+                    android:textColor="@color/colorGold"
+                    android:id="@+id/minPlus"
+                    android:textAlignment="center"
+                    android:layout_marginLeft="15dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
