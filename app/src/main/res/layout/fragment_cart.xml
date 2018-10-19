@@ -33,7 +33,7 @@
             <TextView
                 android:id="@+id/orderPrice"
                 android:layout_width="263dp"
-                android:textSize="15"
+                android:textSize="15dp"
                 android:textColor="@color/colorWhite"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -46,12 +46,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorWhite"
-                android:textSize="15"
+                android:textSize="15dp"
                 android:layout_weight="1"
                 android:background="@color/colorRed"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentTop="true"
-                android:text="PLACE ORDER" />
+                android:text="PLACE ORDER"
+                android:id="@+id/orderBtn"/>
 
         </LinearLayout>
 

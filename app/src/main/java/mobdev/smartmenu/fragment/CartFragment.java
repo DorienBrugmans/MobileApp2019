@@ -11,11 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -37,6 +40,10 @@ public class CartFragment extends Fragment {
     RecyclerView productDetail;
     FirebaseDatabase database;
     DatabaseReference product;
+
+    Button orderbtn;
+    public static TextView price;
+
     public CartFragment() {
         // Required empty public constructor
     }
@@ -45,6 +52,7 @@ public class CartFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         cart = MasterActivity.cart;
+
     }
 
     @Override
@@ -55,15 +63,30 @@ public class CartFragment extends Fragment {
 
         cartRecyclerView = (RecyclerView) myFragment.findViewById(R.id.layoutCart);
 
-        CartAdapter cartAdapter=new CartAdapter();
+        CartAdapter cartAdapter = new CartAdapter();
         cartRecyclerView.setAdapter(cartAdapter);
-        RecyclerView.LayoutManager lytManager=new LinearLayoutManager(getActivity());
+        RecyclerView.LayoutManager lytManager = new LinearLayoutManager(getActivity());
         cartRecyclerView.setLayoutManager(lytManager);
+
+
+        orderbtn = (Button) myFragment.findViewById(R.id.orderBtn);
+        price = (TextView) myFragment.findViewById(R.id.orderPrice);
+
+        price.setText("" + SumPrice(cart));
 
 
         return myFragment;
     }
 
+    public static double SumPrice(List<CartItem> crt) {
+        double total = 0;
 
+        for (int i = 0; i < crt.size(); i++) {
+            total += ((Double.parseDouble(crt.get(i).getProductCount()) * Double.parseDouble(crt.get(i).getProduct().getPrice())));
+
+        }
+
+        return total;
+    }
 }
 

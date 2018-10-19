@@ -14,6 +14,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import mobdev.smartmenu.activity.MasterActivity;
+import mobdev.smartmenu.fragment.CartFragment;
 import model.CartItem;
 
 public class CartAdapter extends RecyclerView.Adapter {
@@ -44,6 +45,10 @@ public class CartAdapter extends RecyclerView.Adapter {
         public Button cart_count_min;
         public Button cart_count_plus;
         public TextView cart_count;
+
+        public Button btnOrder;
+        public TextView price;
+
         private ItemClickListener itemClickListener;
 
         public CartViewHolder(View itemView) {
@@ -53,6 +58,7 @@ public class CartAdapter extends RecyclerView.Adapter {
             cart_count_min = (Button) itemView.findViewById(R.id.minCount);
             cart_count_plus = (Button) itemView.findViewById(R.id.minPlus);
             cart_count = (TextView) itemView.findViewById(R.id.productCartCount);
+
         }
 
         public void setItemClickListener(ItemClickListener itemClickListener) {
@@ -70,6 +76,8 @@ public class CartAdapter extends RecyclerView.Adapter {
 
                     MasterActivity.cart.get(position).setProductCount(count+"");
                     cart_count.setText(MasterActivity.cart.get(position).getProductCount());
+                    CartFragment.price.setText(""+CartFragment.SumPrice(MasterActivity.cart));
+
                 }
             });
 
@@ -82,6 +90,7 @@ public class CartAdapter extends RecyclerView.Adapter {
                     }
                     MasterActivity.cart.get(position).setProductCount(count+"");
                     cart_count.setText(MasterActivity.cart.get(position).getProductCount());
+                    CartFragment.price.setText(""+CartFragment.SumPrice(MasterActivity.cart));
                 }
             });
             //cart_product_image.setImageResource(Integer.parseInt(MasterActivity.cart.get(position).getProduct().getImage()));
@@ -91,6 +100,7 @@ public class CartAdapter extends RecyclerView.Adapter {
         public void onClick(View view) {
             itemClickListener.onClick(view,getAdapterPosition(),false);
         }
+
     }
 
 }
