@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -32,11 +33,13 @@
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="barcode" />
 
-        <activity android:name=".activity.MasterActivity"
-            android:windowSoftInputMode="stateUnchanged|adjustPan"/>
+        <activity
+            android:name=".activity.MasterActivity"
+            android:windowSoftInputMode="stateUnchanged|adjustPan" />
         <activity android:name=".activity.AccountLoginActivity" />
         <activity android:name=".activity.AccountSignUpActivity" />
         <activity android:name=".activity.ResetPasswordActivity" />
+        <activity android:name=".activity.NoInternetActivity"></activity>
     </application>
 
 </manifest>
