@@ -45,6 +45,7 @@ public class MasterActivity extends AppCompatActivity {
                 fragmentTransaction.replace(R.id.fragmentPlace, cartFragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
+
             }
         });
 
