@@ -21,8 +21,8 @@
 
         <ImageView
             android:id="@+id/logo"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:background="@drawable/logo" />
@@ -34,17 +34,18 @@
             android:layout_below="@+id/logo"
             android:text="Please check your network connection!"
             android:textAlignment="center"
-            android:textSize="25dp" />
+            android:textColor="@color/colorWhite"
+            android:textSize="20dp" />
 
         <Button
+            android:id="@+id/btnRefresh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/txtOutput"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
             android:background="@color/colorRed"
-            android:text="Refresh"
-            android:id="@+id/btnRefresh"
-            android:layout_marginTop="15dp"/>
+            android:text="Refresh" />
 
     </RelativeLayout>
 
