@@ -58,10 +58,32 @@ public class CartAdapter extends RecyclerView.Adapter {
         public void setItemClickListener(ItemClickListener itemClickListener) {
             this.itemClickListener = itemClickListener;
         }
-        public void bindView(int position){
+        public void bindView(final int position){
             cart_count.setText(MasterActivity.cart.get(position).getProductCount());
             cart_product_name.setText(MasterActivity.cart.get(position).getProduct().getName());
             Picasso.with(itemView.getContext()).load(MasterActivity.cart.get(position).getProduct().getImage()).into(cart_product_image);
+
+            cart_count_plus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int count=Integer.parseInt(MasterActivity.cart.get(position).getProductCount())+1;
+
+                    MasterActivity.cart.get(position).setProductCount(count+"");
+                    cart_count.setText(MasterActivity.cart.get(position).getProductCount());
+                }
+            });
+
+            cart_count_min.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int count=Integer.parseInt(MasterActivity.cart.get(position).getProductCount());
+                    if (count>0){
+                        --count;
+                    }
+                    MasterActivity.cart.get(position).setProductCount(count+"");
+                    cart_count.setText(MasterActivity.cart.get(position).getProductCount());
+                }
+            });
             //cart_product_image.setImageResource(Integer.parseInt(MasterActivity.cart.get(position).getProduct().getImage()));
         }
 
