@@ -98,7 +98,6 @@ public class ProductDetailFragment extends Fragment implements AdapterView.OnIte
                     public void onClick(View v) {
 
                         if (!TextUtils.isEmpty(viewHolder.product_count.getText())) {
-
                             if (MasterActivity.cart.stream().filter(p->p.getProduct().equals(model)).findFirst().isPresent()){
                                 Toast.makeText(getActivity(), "You already added this item to cart", Toast.LENGTH_SHORT).show();
                             }else{

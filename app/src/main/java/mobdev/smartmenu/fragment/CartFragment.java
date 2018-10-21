@@ -94,36 +94,39 @@ public class CartFragment extends Fragment {
 
         orderbtn.setOnClickListener(v -> {
 
-            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+            if (cart.size()==0){
+                Toast.makeText(getActivity(), "You have nothing in your shopping cart to place an order, please place an order", Toast.LENGTH_SHORT).show();
+            }else {
 
-            String value = "Order" + products.push().getKey();
-            products.child(value).child("item").setValue(MasterActivity.cart);
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", MODE_PRIVATE);
 
-            products.child(value).child("tableId").setValue(sharedPreferences.getString("tafelID", ""));
+                String value = "Order" + products.push().getKey();
+                products.child(value).child("item").setValue(MasterActivity.cart);
 
-            MasterActivity.cart.clear();
+                products.child(value).child("tableId").setValue(sharedPreferences.getString("tafelID", ""));
+
+                MasterActivity.cart.clear();
 
 
-            Toast.makeText(getActivity(), "Order is placed", Toast.LENGTH_LONG).show();
-            CategoriesFragment categoriesFragment = new CategoriesFragment();
-            fragmentManager = getActivity().getSupportFragmentManager();
+                Toast.makeText(getActivity(), "Order is placed", Toast.LENGTH_LONG).show();
+                CategoriesFragment categoriesFragment = new CategoriesFragment();
+                fragmentManager = getActivity().getSupportFragmentManager();
 
-            fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentPlace, categoriesFragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentPlace, categoriesFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
 
-            notification("Thanks","Order is preparing");
-            Handler handler=new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                   notification("hakan","calisiyo");
-                }
-            },10000);
-
+                notification("Thanks for your order", "Your order is being prepared");
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        notification("your order has been prepared", "Enjoy your meal!");
+                    }
+                }, 10000);
+            }
         });
-
 
 
         return myFragment;
@@ -144,7 +147,7 @@ public class CartFragment extends Fragment {
         final String NOTIFICATION_CHANNEL_ID = "4565";
         //Notification Channel
         String channelName = "personal channel";
-        int importance = NotificationManager.IMPORTANCE_LOW;
+        int importance = NotificationManager.IMPORTANCE_HIGH;
         NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, channelName, importance);
         notificationChannel.enableLights(true);
         notificationChannel.setLightColor(Color.RED);

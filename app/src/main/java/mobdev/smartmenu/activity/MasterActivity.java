@@ -24,7 +24,7 @@ public class MasterActivity extends AppCompatActivity {
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
     public static List<CartItem> cart;
-    Button btnCart;
+    Button btnCart, btnCategorie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,7 @@ public class MasterActivity extends AppCompatActivity {
 
         txtTafel = (TextView) findViewById(R.id.txtTable);
         btnCart = (Button) findViewById(R.id.btnCart);
+        btnCategorie = (Button) findViewById(R.id.btnCategorie);
 
         btnCart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +50,21 @@ public class MasterActivity extends AppCompatActivity {
             }
         });
 
+
+        btnCategorie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CategoriesFragment categoriesFragment = new CategoriesFragment();
+
+                fragmentManager = getSupportFragmentManager();
+
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentPlace, categoriesFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+            }
+        });
         cart = new LinkedList<>();
 
         SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
