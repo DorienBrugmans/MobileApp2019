@@ -13,10 +13,10 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder implements View.
     public ImageView category_image;
     private ItemClickListener itemClickListener;
 
-    public CategoryViewHolder(View itemView){
+    public CategoryViewHolder(View itemView) {
         super(itemView);
-        category_image=(ImageView)itemView.findViewById(R.id.categoryImage);
-        category_name=(TextView)itemView.findViewById(R.id.categoryName);
+        category_image = (ImageView) itemView.findViewById(R.id.categoryImage);
+        category_name = (TextView) itemView.findViewById(R.id.categoryName);
 
         itemView.setOnClickListener(this);
     }
@@ -27,6 +27,6 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder implements View.
 
     @Override
     public void onClick(View view) {
-        itemClickListener.onClick(view,getAdapterPosition(),false);
+        itemClickListener.onClick(view, getAdapterPosition(), false);
     }
 }

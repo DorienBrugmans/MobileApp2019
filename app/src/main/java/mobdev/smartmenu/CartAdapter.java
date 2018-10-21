@@ -24,7 +24,7 @@ public class CartAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.product_cart_layout,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_cart_layout, parent, false);
         return new CartViewHolder(view);
     }
 
@@ -64,7 +64,8 @@ public class CartAdapter extends RecyclerView.Adapter {
         public void setItemClickListener(ItemClickListener itemClickListener) {
             this.itemClickListener = itemClickListener;
         }
-        public void bindView(final int position){
+
+        public void bindView(final int position) {
             cart_count.setText(MasterActivity.cart.get(position).getProductCount());
             cart_product_name.setText(MasterActivity.cart.get(position).getProduct().getName());
             Picasso.with(itemView.getContext()).load(MasterActivity.cart.get(position).getProduct().getImage()).into(cart_product_image);
@@ -72,11 +73,11 @@ public class CartAdapter extends RecyclerView.Adapter {
             cart_count_plus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int count=Integer.parseInt(MasterActivity.cart.get(position).getProductCount())+1;
+                    int count = Integer.parseInt(MasterActivity.cart.get(position).getProductCount()) + 1;
 
-                    MasterActivity.cart.get(position).setProductCount(count+"");
+                    MasterActivity.cart.get(position).setProductCount(count + "");
                     cart_count.setText(MasterActivity.cart.get(position).getProductCount());
-                    CartFragment.price.setText(""+CartFragment.SumPrice(MasterActivity.cart));
+                    CartFragment.price.setText("" + CartFragment.SumPrice(MasterActivity.cart));
 
                 }
             });
@@ -84,13 +85,13 @@ public class CartAdapter extends RecyclerView.Adapter {
             cart_count_min.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int count=Integer.parseInt(MasterActivity.cart.get(position).getProductCount());
-                    if (count>0){
+                    int count = Integer.parseInt(MasterActivity.cart.get(position).getProductCount());
+                    if (count > 0) {
                         --count;
                     }
-                    MasterActivity.cart.get(position).setProductCount(count+"");
+                    MasterActivity.cart.get(position).setProductCount(count + "");
                     cart_count.setText(MasterActivity.cart.get(position).getProductCount());
-                    CartFragment.price.setText(""+CartFragment.SumPrice(MasterActivity.cart));
+                    CartFragment.price.setText("" + CartFragment.SumPrice(MasterActivity.cart));
                 }
             });
             //cart_product_image.setImageResource(Integer.parseInt(MasterActivity.cart.get(position).getProduct().getImage()));
@@ -98,7 +99,7 @@ public class CartAdapter extends RecyclerView.Adapter {
 
         @Override
         public void onClick(View view) {
-            itemClickListener.onClick(view,getAdapterPosition(),false);
+            itemClickListener.onClick(view, getAdapterPosition(), false);
         }
 
     }

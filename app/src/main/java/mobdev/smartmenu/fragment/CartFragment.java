@@ -1,10 +1,21 @@
 package mobdev.smartmenu.fragment;
 
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.opengl.Visibility;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -27,6 +38,8 @@ import mobdev.smartmenu.R;
 import mobdev.smartmenu.activity.MasterActivity;
 import model.CartItem;
 
+import static android.content.Context.MODE_PRIVATE;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -35,13 +48,16 @@ public class CartFragment extends Fragment {
     public static List<CartItem> cart;
     View myFragment;
     RecyclerView cartRecyclerView;
-    LinearLayoutManager layoutManager;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
 
-    RecyclerView productDetail;
     FirebaseDatabase database;
-    DatabaseReference product;
+    DatabaseReference products;
 
     Button orderbtn;
+    private String CHANNEL_ID="personal_notification";
+    private final int NOTIFICATION_ID=001;
+
     public static TextView price;
 
     public CartFragment() {
@@ -51,8 +67,10 @@ public class CartFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        cart = MasterActivity.cart;
+        database = FirebaseDatabase.getInstance();
+        products = database.getReference("Order");
 
+        cart = MasterActivity.cart;
     }
 
     @Override
@@ -74,6 +92,39 @@ public class CartFragment extends Fragment {
 
         price.setText("" + SumPrice(cart));
 
+        orderbtn.setOnClickListener(v -> {
+
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+
+            String value = "Order" + products.push().getKey();
+            products.child(value).child("item").setValue(MasterActivity.cart);
+
+            products.child(value).child("tableId").setValue(sharedPreferences.getString("tafelID", ""));
+
+            MasterActivity.cart.clear();
+
+
+            Toast.makeText(getActivity(), "Order is placed", Toast.LENGTH_LONG).show();
+            CategoriesFragment categoriesFragment = new CategoriesFragment();
+            fragmentManager = getActivity().getSupportFragmentManager();
+
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragmentPlace, categoriesFragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+
+            notification("Thanks","Order is preparing");
+            Handler handler=new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                   notification("hakan","calisiyo");
+                }
+            },10000);
+
+        });
+
+
 
         return myFragment;
     }
@@ -87,6 +138,30 @@ public class CartFragment extends Fragment {
         }
 
         return total;
+    }
+    public void notification(String title,String description){
+
+        final String NOTIFICATION_CHANNEL_ID = "4565";
+        //Notification Channel
+        String channelName = "personal channel";
+        int importance = NotificationManager.IMPORTANCE_LOW;
+        NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, channelName, importance);
+        notificationChannel.enableLights(true);
+        notificationChannel.setLightColor(Color.RED);
+        notificationChannel.enableVibration(true);
+        notificationChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+
+
+        NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.createNotificationChannel(notificationChannel);
+
+        NotificationCompat.Builder builder=new NotificationCompat.Builder(getActivity(), NOTIFICATION_CHANNEL_ID);
+        builder.setSmallIcon(R.drawable.logo);
+        builder.setContentTitle(title);
+        builder.setContentText(description);
+        builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        NotificationManagerCompat notificationManagerCompat=NotificationManagerCompat.from(getActivity());
+        notificationManagerCompat.notify(NOTIFICATION_ID,builder.build());
     }
 }
 

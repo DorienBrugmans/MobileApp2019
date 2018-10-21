@@ -28,29 +28,29 @@ import model.Food;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProductsFragment  extends Fragment implements AdapterView.OnItemClickListener {
+public class ProductsFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
-   // View myFragment;
+    // View myFragment;
     RecyclerView listProducts;
-    FirebaseRecyclerAdapter<Food,ProductViewHolder> adapter;
+    FirebaseRecyclerAdapter<Food, ProductViewHolder> adapter;
     FirebaseDatabase database;
     DatabaseReference products;
     LinearLayoutManager layoutManager;
     View view;
-    String categoryId="";
+    String categoryId = "";
 
-    public static ProductsFragment newInstance(){
-        ProductsFragment productsFragment=new ProductsFragment();
+    public static ProductsFragment newInstance() {
+        ProductsFragment productsFragment = new ProductsFragment();
         return productsFragment;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        database=FirebaseDatabase.getInstance();
-        products=database.getReference("Food");
+        database = FirebaseDatabase.getInstance();
+        products = database.getReference("Food");
     }
 
     public ProductsFragment() {
@@ -60,22 +60,23 @@ public class ProductsFragment  extends Fragment implements AdapterView.OnItemCli
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-              // Inflate the layout for this fragment
+        // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_products, container, false);
 
         Bundle bundle = this.getArguments();
 
-        categoryId=bundle.getString("categoryID","0");
-        listProducts=view.findViewById(R.id.listProduct);
+        categoryId = bundle.getString("categoryID", "0");
+        listProducts = view.findViewById(R.id.listProduct);
         listProducts.setHasFixedSize(true);
-        layoutManager=new LinearLayoutManager(container.getContext());
+        layoutManager = new LinearLayoutManager(container.getContext());
         listProducts.setLayoutManager(layoutManager);
         loadProducts();
         return view;
 
     }
+
     private void loadProducts() {
-        adapter=new FirebaseRecyclerAdapter<Food, ProductViewHolder>(Food.class,R.layout.productview_item_layout,ProductViewHolder.class,products.orderByChild("categoryId").equalTo(categoryId)) {
+        adapter = new FirebaseRecyclerAdapter<Food, ProductViewHolder>(Food.class, R.layout.productview_item_layout, ProductViewHolder.class, products.orderByChild("categoryId").equalTo(categoryId)) {
             @Override
             protected void populateViewHolder(ProductViewHolder viewHolder, final Food model, int position) {
                 viewHolder.product_name.setText(model.getName());
