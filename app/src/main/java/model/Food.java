@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Food {
     private String name;
     private String image;
@@ -66,5 +68,24 @@ public class Food {
 
     public void setCategoryId(String categoryId) {
         this.categoryId = categoryId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Food food = (Food) o;
+        return Objects.equals(name, food.name) &&
+                Objects.equals(image, food.image) &&
+                Objects.equals(description, food.description) &&
+                Objects.equals(price, food.price) &&
+                Objects.equals(discount, food.discount) &&
+                Objects.equals(categoryId, food.categoryId);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(name, image, description, price, discount, categoryId);
     }
 }
