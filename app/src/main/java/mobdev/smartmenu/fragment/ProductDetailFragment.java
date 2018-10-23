@@ -102,7 +102,7 @@ public class ProductDetailFragment extends Fragment implements AdapterView.OnIte
                                     Toast.makeText(getActivity(), "You already added this item to cart", Toast.LENGTH_SHORT).show();
                                 }else{
                                     MasterActivity.cart.add(new CartItem(model, viewHolder.product_count.getText().toString()));
-                                    Toast.makeText(getActivity(), MasterActivity.cart.get(position).getProductCount() + " x " + viewHolder.product_name.getText().toString() + " added to cart..", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), viewHolder.product_count.getText().toString() + " x " + viewHolder.product_name.getText().toString() + " added to cart..", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         }
