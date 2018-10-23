@@ -96,16 +96,15 @@ public class ProductDetailFragment extends Fragment implements AdapterView.OnIte
                 viewHolder.cartBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
-                        if (!TextUtils.isEmpty(viewHolder.product_count.getText())) {
-                            if (MasterActivity.cart.stream().filter(p->p.getProduct().equals(model)).findFirst().isPresent()){
-                                Toast.makeText(getActivity(), "You already added this item to cart", Toast.LENGTH_SHORT).show();
-                            }else{
-                                MasterActivity.cart.add(new CartItem(model, viewHolder.product_count.getText().toString()));
-                                Toast.makeText(getActivity(), MasterActivity.cart.get(0).getProductCount() + " x " + viewHolder.product_name.getText().toString() + " added to cart..", Toast.LENGTH_SHORT).show();
+                        if (!viewHolder.product_count.getText().toString().equals("0")){
+                            if (!TextUtils.isEmpty(viewHolder.product_count.getText())){
+                                if (MasterActivity.cart.stream().filter(p->p.getProduct().equals(model)).findFirst().isPresent()){
+                                    Toast.makeText(getActivity(), "You already added this item to cart", Toast.LENGTH_SHORT).show();
+                                }else{
+                                    MasterActivity.cart.add(new CartItem(model, viewHolder.product_count.getText().toString()));
+                                    Toast.makeText(getActivity(), MasterActivity.cart.get(position).getProductCount() + " x " + viewHolder.product_name.getText().toString() + " added to cart..", Toast.LENGTH_SHORT).show();
+                                }
                             }
-
-
                         }
                     }
                 });
