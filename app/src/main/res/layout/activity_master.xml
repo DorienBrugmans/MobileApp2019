@@ -51,25 +51,30 @@
 
     </RelativeLayout>
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/footer"
         android:layout_alignParentBottom="true"
         android:gravity="center"
-        android:background="@color/colorBrown">
+        android:background="@color/colorPrimaryDark"
+        android:padding="0dp">
 
         <Button
             android:id="@+id/btnCategorie"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="0dp"
-            android:background="@drawable/btn_bg_stroke"
             android:padding="0dp"
             android:layout_weight="1"
             android:text="CATEGORIES"
+            android:background="@color/fui_transparent"
             android:textColor="@color/colorWhite" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="30dp"
+            android:background="@color/colorWhite"/>
 
         <Button
             android:id="@+id/btnCart"
@@ -77,11 +82,25 @@
             android:layout_height="match_parent"
             android:layout_margin="0dp"
             android:layout_weight="1"
-
-            android:background="@drawable/btn_bg_stroke"
-
             android:padding="0dp"
             android:text="CART"
+            android:background="@color/fui_transparent"
+            android:textColor="@color/colorWhite" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="30dp"
+            android:background="@color/colorWhite"/>
+
+        <Button
+            android:id="@+id/btnLogOut"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="0dp"
+            android:layout_weight="1"
+            android:padding="0dp"
+            android:text="LOG OUT"
+            android:background="@color/fui_transparent"
             android:textColor="@color/colorWhite" />
 
 
