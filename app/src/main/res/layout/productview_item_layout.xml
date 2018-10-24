@@ -24,4 +24,13 @@
         android:textStyle="bold"
         android:textColor="@color/colorWhite"/>
 
+    <ProgressBar
+        android:id="@+id/categoryProgress"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:indeterminateDrawable="@drawable/my_progress_indeterminate" />
+
 </RelativeLayout>

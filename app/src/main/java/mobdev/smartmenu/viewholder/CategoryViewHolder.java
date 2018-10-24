@@ -3,6 +3,7 @@ package mobdev.smartmenu.viewholder;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import mobdev.smartmenu.ItemClickListener;
@@ -12,11 +13,15 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder implements View.
     public TextView category_name;
     public ImageView category_image;
     private ItemClickListener itemClickListener;
+    public ProgressBar category_progress;
 
     public CategoryViewHolder(View itemView) {
         super(itemView);
         category_image = (ImageView) itemView.findViewById(R.id.categoryImage);
         category_name = (TextView) itemView.findViewById(R.id.categoryName);
+        category_progress = (ProgressBar) itemView.findViewById(R.id.categoryProgress);
+
+        category_progress.setVisibility(View.VISIBLE);
 
         itemView.setOnClickListener(this);
     }

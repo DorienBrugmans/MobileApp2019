@@ -12,11 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import mobdev.smartmenu.ItemClickListener;
@@ -79,8 +79,18 @@ public class ProductsFragment extends Fragment implements AdapterView.OnItemClic
         adapter = new FirebaseRecyclerAdapter<Food, ProductViewHolder>(Food.class, R.layout.productview_item_layout, ProductViewHolder.class, products.orderByChild("categoryId").equalTo(categoryId)) {
             @Override
             protected void populateViewHolder(ProductViewHolder viewHolder, final Food model, int position) {
-                viewHolder.product_name.setText(model.getName());
-                Picasso.with(getActivity()).load(model.getImage()).into(viewHolder.product_image);
+                Picasso.with(getActivity()).load(model.getImage()).into(viewHolder.product_image, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        viewHolder.product_progress.setVisibility(View.GONE);
+                        viewHolder.product_name.setText(model.getName());
+                    }
+
+                    @Override
+                    public void onError() {
+
+                    }
+                });
 
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
