@@ -1,6 +1,7 @@
 package mobdev.smartmenu.fragment;
 
 
+import android.animation.ValueAnimator;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -31,6 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import mobdev.smartmenu.CartAdapter;
@@ -86,11 +88,8 @@ public class CartFragment extends Fragment {
         RecyclerView.LayoutManager lytManager = new LinearLayoutManager(getActivity());
         cartRecyclerView.setLayoutManager(lytManager);
 
-
         orderbtn = (Button) myFragment.findViewById(R.id.orderBtn);
         price = (TextView) myFragment.findViewById(R.id.orderPrice);
-
-        price.setText("" + SumPrice(cart));
 
         orderbtn.setOnClickListener(v -> {
 
@@ -107,6 +106,7 @@ public class CartFragment extends Fragment {
 
                 MasterActivity.cart.clear();
 
+                SumPrice();
 
                 Toast.makeText(getActivity(), "Order is placed", Toast.LENGTH_LONG).show();
                 CategoriesFragment categoriesFragment = new CategoriesFragment();
@@ -128,20 +128,39 @@ public class CartFragment extends Fragment {
             }
         });
 
-
         return myFragment;
     }
 
-    public static double SumPrice(List<CartItem> crt) {
+    public double SumPriceAtBeginning(){
         double total = 0;
 
-        for (int i = 0; i < crt.size(); i++) {
-            total += ((Double.parseDouble(crt.get(i).getProductCount()) * Double.parseDouble(crt.get(i).getProduct().getPrice())));
-
+        for (int i = 0; i < cart.size(); i++) {
+            total += ((Double.parseDouble(cart.get(i).getProductCount()) * Double.parseDouble(cart.get(i).getProduct().getPrice())));
         }
 
         return total;
     }
+
+    public void SumPrice() {
+        double total = 0;
+
+        for (int i = 0; i < cart.size(); i++) {
+            total += ((Double.parseDouble(cart.get(i).getProductCount()) * Double.parseDouble(cart.get(i).getProduct().getPrice())));
+        }
+
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(Float.parseFloat(new DecimalFormat("##.##").format(total)));
+        valueAnimator.setDuration(500);
+
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                CartFragment.price.setText("€ " + new DecimalFormat("##.##").format(valueAnimator.getAnimatedValue()).toString());
+            }
+        });
+
+        valueAnimator.start();
+    }
+
     public void notification(String title,String description){
 
         final String NOTIFICATION_CHANNEL_ID = "4565";
@@ -153,7 +172,6 @@ public class CartFragment extends Fragment {
         notificationChannel.setLightColor(Color.RED);
         notificationChannel.enableVibration(true);
         notificationChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
-
 
         NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.createNotificationChannel(notificationChannel);

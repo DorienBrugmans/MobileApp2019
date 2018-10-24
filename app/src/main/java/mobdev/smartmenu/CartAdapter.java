@@ -1,5 +1,6 @@
 package mobdev.smartmenu;
 
+import android.animation.ValueAnimator;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import mobdev.smartmenu.activity.MasterActivity;
@@ -25,6 +27,7 @@ public class CartAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_cart_layout, parent, false);
+        SumPrice(MasterActivity.cart);
         return new CartViewHolder(view);
     }
 
@@ -58,7 +61,6 @@ public class CartAdapter extends RecyclerView.Adapter {
             cart_count_min = (Button) itemView.findViewById(R.id.minCount);
             cart_count_plus = (Button) itemView.findViewById(R.id.minPlus);
             cart_count = (TextView) itemView.findViewById(R.id.productCartCount);
-
         }
 
         public void setItemClickListener(ItemClickListener itemClickListener) {
@@ -77,8 +79,7 @@ public class CartAdapter extends RecyclerView.Adapter {
 
                     MasterActivity.cart.get(position).setProductCount(count + "");
                     cart_count.setText(MasterActivity.cart.get(position).getProductCount());
-                    CartFragment.price.setText("" + CartFragment.SumPrice(MasterActivity.cart));
-
+                    SumPrice(MasterActivity.cart);
                 }
             });
 
@@ -91,7 +92,7 @@ public class CartAdapter extends RecyclerView.Adapter {
                     }
                     MasterActivity.cart.get(position).setProductCount(count + "");
                     cart_count.setText(MasterActivity.cart.get(position).getProductCount());
-                    CartFragment.price.setText("" + CartFragment.SumPrice(MasterActivity.cart));
+                    SumPrice(MasterActivity.cart);
                 }
             });
             //cart_product_image.setImageResource(Integer.parseInt(MasterActivity.cart.get(position).getProduct().getImage()));
@@ -102,6 +103,25 @@ public class CartAdapter extends RecyclerView.Adapter {
             itemClickListener.onClick(view, getAdapterPosition(), false);
         }
 
+    }
+
+    public static void SumPrice(List<CartItem> crt) {
+        double total = 0;
+
+        for (int i = 0; i < crt.size(); i++) {
+            total += ((Double.parseDouble(crt.get(i).getProductCount()) * Double.parseDouble(crt.get(i).getProduct().getPrice())));
+        }
+
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(Float.parseFloat(new DecimalFormat("##.##").format(total)));
+        valueAnimator.setDuration(500);
+
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                CartFragment.price.setText("€ " + new DecimalFormat("##.##").format(valueAnimator.getAnimatedValue()).toString());
+            }
+        });
+        valueAnimator.start();
     }
 
 }

@@ -23,6 +23,7 @@
             android:background="@color/colorRed"
             android:text="VIP"
             android:textColor="@color/colorWhite" />
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="100dp"
@@ -44,8 +45,5 @@
         </SurfaceView>
 
     </RelativeLayout>
-
-
-
 
 </RelativeLayout>
