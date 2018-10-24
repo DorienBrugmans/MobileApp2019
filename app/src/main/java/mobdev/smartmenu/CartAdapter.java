@@ -1,11 +1,16 @@
 package mobdev.smartmenu;
 
 import android.animation.ValueAnimator;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,6 +19,7 @@ import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.logging.Handler;
 
 import mobdev.smartmenu.activity.MasterActivity;
 import mobdev.smartmenu.fragment.CartFragment;
@@ -27,7 +33,7 @@ public class CartAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_cart_layout, parent, false);
-        SumPrice(MasterActivity.cart);
+        sumPrice(MasterActivity.cart);
         return new CartViewHolder(view);
     }
 
@@ -75,37 +81,49 @@ public class CartAdapter extends RecyclerView.Adapter {
             cart_count_plus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    double pre = getPreviousTotal();
                     int count = Integer.parseInt(MasterActivity.cart.get(position).getProductCount()) + 1;
 
                     MasterActivity.cart.get(position).setProductCount(count + "");
                     cart_count.setText(MasterActivity.cart.get(position).getProductCount());
-                    SumPrice(MasterActivity.cart);
+                    sumPrice(pre, MasterActivity.cart);
                 }
             });
 
             cart_count_min.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    double pre = getPreviousTotal();
                     int count = Integer.parseInt(MasterActivity.cart.get(position).getProductCount());
+
                     if (count > 0) {
                         --count;
                     }
+
                     MasterActivity.cart.get(position).setProductCount(count + "");
                     cart_count.setText(MasterActivity.cart.get(position).getProductCount());
-                    SumPrice(MasterActivity.cart);
+                    sumPrice(pre, MasterActivity.cart);
                 }
             });
-            //cart_product_image.setImageResource(Integer.parseInt(MasterActivity.cart.get(position).getProduct().getImage()));
         }
 
         @Override
         public void onClick(View view) {
             itemClickListener.onClick(view, getAdapterPosition(), false);
         }
-
     }
 
-    public static void SumPrice(List<CartItem> crt) {
+    public static double getPreviousTotal() {
+        double previousTotal = 0;
+
+        for (int i = 0; i < MasterActivity.cart.size(); i++) {
+            previousTotal += ((Double.parseDouble(MasterActivity.cart.get(i).getProductCount()) * Double.parseDouble(MasterActivity.cart.get(i).getProduct().getPrice())));
+        }
+
+        return previousTotal;
+    }
+
+    public static void sumPrice(List<CartItem> crt) {
         double total = 0;
 
         for (int i = 0; i < crt.size(); i++) {
@@ -124,4 +142,48 @@ public class CartAdapter extends RecyclerView.Adapter {
         valueAnimator.start();
     }
 
+    public static void sumPrice(double previousTotal,List<CartItem> crt) {
+        double total = 0;
+
+        for (int i = 0; i < crt.size(); i++) {
+            total += ((Double.parseDouble(crt.get(i).getProductCount()) * Double.parseDouble(crt.get(i).getProduct().getPrice())));
+        }
+
+        /*if (total > previousTotal) {
+            CartFragment.imgUp.animate().alpha(0f).setDuration(1000).withStartAction(new Runnable() {
+                @Override
+                public void run() {
+                    CartFragment.imgUp.setVisibility(View.VISIBLE);
+                }
+            }).withEndAction(new Runnable() {
+                @Override
+                public void run() {
+                    CartFragment.imgUp.setVisibility(View.INVISIBLE);
+                }
+            }).start();
+        } else {
+            CartFragment.imgUp.animate().setDuration(1000).withStartAction(new Runnable() {
+                @Override
+                public void run() {
+                    CartFragment.imgDown.setVisibility(View.VISIBLE);
+                }
+            }).withEndAction(new Runnable() {
+                @Override
+                public void run() {
+                    CartFragment.imgDown.setVisibility(View.INVISIBLE);
+                }
+            }).start();
+        }*/
+
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(Float.parseFloat(new DecimalFormat("##.##").format(total)));
+        valueAnimator.setDuration(500);
+
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                CartFragment.price.setText("€ " + new DecimalFormat("##.##").format(valueAnimator.getAnimatedValue()).toString());
+            }
+        });
+        valueAnimator.start();
+    }
 }

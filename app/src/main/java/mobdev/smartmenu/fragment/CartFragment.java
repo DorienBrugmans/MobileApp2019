@@ -2,13 +2,11 @@ package mobdev.smartmenu.fragment;
 
 
 import android.animation.ValueAnimator;
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -22,15 +20,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -61,6 +59,8 @@ public class CartFragment extends Fragment {
     private final int NOTIFICATION_ID=001;
 
     public static TextView price;
+    public static ImageView imgUp;
+    public static ImageView imgDown;
 
     public CartFragment() {
         // Required empty public constructor
@@ -96,7 +96,6 @@ public class CartFragment extends Fragment {
             if (cart.size()==0){
                 Toast.makeText(getActivity(), "You have nothing in your shopping cart to place an order, please place an order", Toast.LENGTH_SHORT).show();
             }else {
-
                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", MODE_PRIVATE);
 
                 String value = "Order" + products.push().getKey();
@@ -131,16 +130,6 @@ public class CartFragment extends Fragment {
         return myFragment;
     }
 
-    public double SumPriceAtBeginning(){
-        double total = 0;
-
-        for (int i = 0; i < cart.size(); i++) {
-            total += ((Double.parseDouble(cart.get(i).getProductCount()) * Double.parseDouble(cart.get(i).getProduct().getPrice())));
-        }
-
-        return total;
-    }
-
     public void SumPrice() {
         double total = 0;
 
@@ -162,11 +151,10 @@ public class CartFragment extends Fragment {
     }
 
     public void notification(String title,String description){
-
         final String NOTIFICATION_CHANNEL_ID = "4565";
-        //Notification Channel
         String channelName = "personal channel";
         int importance = NotificationManager.IMPORTANCE_HIGH;
+
         NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, channelName, importance);
         notificationChannel.enableLights(true);
         notificationChannel.setLightColor(Color.RED);
