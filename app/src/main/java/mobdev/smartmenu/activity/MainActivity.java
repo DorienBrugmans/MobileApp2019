@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -36,13 +37,27 @@ public class MainActivity extends AppCompatActivity {
     CameraSource cameraSource;
     final int RequestCameraPermissionID = 1001;
 
-    Button btnNext;
+    Button btnNext,btnLocal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btnNext=(Button) findViewById(R.id.btn_next) ;
+        btnLocal=(Button) findViewById(R.id.btn_nextLocal);
+        SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+        if (!sharedPreferences.getString("tafelID","0").substring(0,1).contains("0")){
+            String text=sharedPreferences.getString("tafelID","Table1");
+            btnLocal.setText(text);
+            saveData(text);
+            btnLocal.setVisibility(View.VISIBLE);
+            btnLocal.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(MainActivity.this, MasterActivity.class));
+                }
+            });
+        }
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
                             cameraSource.stop();
                             // HIDE CONTAINER
                             cameraPreview.setVisibility(View.INVISIBLE);
+
                             startActivity(new Intent(MainActivity.this, MasterActivity.class));
                         }
                     });
