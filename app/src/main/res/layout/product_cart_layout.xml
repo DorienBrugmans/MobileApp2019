@@ -44,7 +44,7 @@
                     android:textAlignment="center"
                     android:background="@color/colorRed"
                     android:textSize="15dp"
-                    android:text="-"
+                    android:text="@string/min"
                     android:textColor="@color/colorGold"
                     android:id="@+id/minCount"
                     android:layout_marginRight="15dp"/>
@@ -53,14 +53,13 @@
                     android:id="@+id/productCartCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:textColor="@color/colorRed"
                     android:textSize="20dp"/>
 
                 <Button
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:text="+"
+                    android:text="@string/plus"
                     android:textSize="15dp"
                     android:background="@color/colorRed"
                     android:textColor="@color/colorGold"

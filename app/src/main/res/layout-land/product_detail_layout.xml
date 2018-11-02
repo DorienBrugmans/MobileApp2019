@@ -31,14 +31,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name: " />
+                android:text="@string/name" />
 
             <TextView
                 android:id="@+id/productDetailName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:text="product"
                 android:textAlignment="center"
                 android:textColor="@color/colorWhite"
                 android:textColorHint="@color/colorWhite" />
@@ -46,7 +45,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Description: " />
+                android:text="@string/description" />
 
             <TextView
                 android:id="@+id/productDetailDescription"
@@ -54,21 +53,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:textAlignment="center"
-                android:text="descskldfjqmlsdkfj qsdlkfjqmlsdkjfqmsl dfjqmslkd fjmqslkdfj qsmldkfj qmsldkfj mlsdkfj mqsldkjf q"
                 android:textColor="@color/colorWhite"
                 android:textColorHint="@color/colorWhite" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Price: " />
+                android:text="@string/price" />
 
             <TextView
                 android:id="@+id/productDetailPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:text="999 9999"
                 android:textAlignment="center"
                 android:textColor="@color/colorWhite"
                 android:textColorHint="@color/colorWhite" />
@@ -80,7 +77,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:gravity="center_horizontal"
-                android:hint="Count"
+                android:hint="@string/count"
                 android:inputType="numberDecimal"
                 android:textAlignment="center"
                 android:textColor="@color/colorWhite"
@@ -93,7 +90,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:background="@color/colorRed"
-                android:text="Add to cart" />
+                android:text="@string/addCart" />
 
         </LinearLayout>
 

@@ -20,7 +20,6 @@
             android:layout_alignStart="@+id/camera"
             android:layout_alignTop="@+id/btn_next"
             android:background="@color/colorRed"
-            android:text="TEST"
             android:visibility="invisible"
             android:textColor="@color/colorWhite" />
 

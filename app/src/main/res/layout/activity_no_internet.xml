@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/logo"
-            android:text="Please check your network connection!"
+            android:text="@string/networkConnection"
             android:textAlignment="center"
             android:textSize="25dp" />
 
@@ -41,7 +41,7 @@
             android:layout_below="@id/txtOutput"
             android:layout_centerHorizontal="true"
             android:background="@color/colorRed"
-            android:text="Refresh"
+            android:text="@string/refresh"
             android:id="@+id/btnRefresh"
             android:layout_marginTop="15dp"/>
 
