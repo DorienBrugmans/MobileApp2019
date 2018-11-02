@@ -1,11 +1,14 @@
 package mobdev.smartmenu.activity;
 
 
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NotificationCompat;
@@ -75,9 +78,31 @@ public class MasterActivity extends AppCompatActivity {
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(MasterActivity.this, AccountSignUpActivity.class));
-                finish();
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MasterActivity.this);
+                alertDialogBuilder.setTitle("SmartMenu");
+                alertDialogBuilder.setIcon(R.drawable.logo);
+                alertDialogBuilder.setMessage("Are you sure?");
+                alertDialogBuilder.setCancelable(true);
+
+                alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(MasterActivity.this, AccountSignUpActivity.class));
+                        finish();
+                    }
+                });
+
+                alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
             }
         });
 
