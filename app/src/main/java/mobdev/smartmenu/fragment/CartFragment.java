@@ -2,9 +2,11 @@ package mobdev.smartmenu.fragment;
 
 
 import android.animation.ValueAnimator;
+import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -20,10 +22,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,17 +49,11 @@ public class CartFragment extends Fragment {
     RecyclerView cartRecyclerView;
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
-
     FirebaseDatabase database;
     DatabaseReference products;
-
     Button orderbtn;
-    private String CHANNEL_ID="personal_notification";
-    private final int NOTIFICATION_ID=001;
-
+    private final int NOTIFICATION_ID = 001;
     public static TextView price;
-    public static ImageView imgUp;
-    public static ImageView imgDown;
 
     public CartFragment() {
         // Required empty public constructor
@@ -71,14 +64,12 @@ public class CartFragment extends Fragment {
         super.onCreate(savedInstanceState);
         database = FirebaseDatabase.getInstance();
         products = database.getReference("Order");
-
         cart = MasterActivity.cart;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         myFragment = inflater.inflate(R.layout.fragment_cart, container, false);
 
         cartRecyclerView = (RecyclerView) myFragment.findViewById(R.id.layoutCart);
@@ -93,37 +84,58 @@ public class CartFragment extends Fragment {
 
         orderbtn.setOnClickListener(v -> {
 
-            if (cart.size()==0){
-                Toast.makeText(getActivity(), "You have nothing in your shopping cart to place an order, please place an order", Toast.LENGTH_SHORT).show();
-            }else {
-                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+            if (cart.size() == 0) {
+                Toast.makeText(getActivity(), "You have nothing in your shopping cart to place an order, please place an order!", Toast.LENGTH_SHORT).show();
+            } else {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+                alertDialogBuilder.setTitle("SmartMenu");
+                alertDialogBuilder.setIcon(R.drawable.logo);
+                alertDialogBuilder.setMessage("Are you sure?");
+                alertDialogBuilder.setCancelable(true);
 
-                String value = "Order" + products.push().getKey();
-                products.child(value).child("item").setValue(MasterActivity.cart);
+                alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
-                products.child(value).child("tableId").setValue(sharedPreferences.getString("tafelID", ""));
-
-                MasterActivity.cart.clear();
-
-                SumPrice();
-
-                Toast.makeText(getActivity(), "Order is placed", Toast.LENGTH_LONG).show();
-                CategoriesFragment categoriesFragment = new CategoriesFragment();
-                fragmentManager = getActivity().getSupportFragmentManager();
-
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentPlace, categoriesFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-
-                notification("Thanks for your order", "Your order is being prepared");
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
                     @Override
-                    public void run() {
-                        notification("your order has been prepared", "Enjoy your meal!");
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+
+                        String value = "Order" + products.push().getKey();
+                        products.child(value).child("item").setValue(MasterActivity.cart);
+
+                        products.child(value).child("tableId").setValue(sharedPreferences.getString("tafelID", ""));
+
+                        MasterActivity.cart.clear();
+
+                        SumPrice();
+
+                        CategoriesFragment categoriesFragment = new CategoriesFragment();
+                        fragmentManager = getActivity().getSupportFragmentManager();
+
+                        fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.fragmentPlace, categoriesFragment);
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();
+
+                        notification("Thanks for your order!", "Your order is being prepared!");
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                notification("Your order has been prepared!", "Enjoy your meal!");
+                            }
+                        }, 10000);
                     }
-                }, 10000);
+                });
+
+                alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
             }
         });
 
@@ -150,7 +162,7 @@ public class CartFragment extends Fragment {
         valueAnimator.start();
     }
 
-    public void notification(String title,String description){
+    public void notification(String title, String description) {
         final String NOTIFICATION_CHANNEL_ID = "4565";
         String channelName = "personal channel";
         int importance = NotificationManager.IMPORTANCE_HIGH;
@@ -164,13 +176,13 @@ public class CartFragment extends Fragment {
         NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.createNotificationChannel(notificationChannel);
 
-        NotificationCompat.Builder builder=new NotificationCompat.Builder(getActivity(), NOTIFICATION_CHANNEL_ID);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getActivity(), NOTIFICATION_CHANNEL_ID);
         builder.setSmallIcon(R.drawable.logo);
         builder.setContentTitle(title);
         builder.setContentText(description);
         builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
-        NotificationManagerCompat notificationManagerCompat=NotificationManagerCompat.from(getActivity());
-        notificationManagerCompat.notify(NOTIFICATION_ID,builder.build());
+        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getActivity());
+        notificationManagerCompat.notify(NOTIFICATION_ID, builder.build());
     }
 }
 

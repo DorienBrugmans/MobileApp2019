@@ -1,10 +1,11 @@
 package mobdev.smartmenu.fragment;
 
 
+import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -21,8 +21,6 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import mobdev.smartmenu.activity.MasterActivity;
 import mobdev.smartmenu.ItemClickListener;
@@ -37,10 +35,6 @@ import model.Food;
  */
 public class ProductDetailFragment extends Fragment implements AdapterView.OnItemClickListener {
 
-    FragmentManager fragmentManager;
-    FragmentTransaction fragmentTransaction;
-    Button btnAddToCart;
-    // View myFragment;
     RecyclerView productDetail;
     FirebaseRecyclerAdapter<Food, ProductDetailViewHolder> adapter;
     FirebaseDatabase database;
@@ -67,9 +61,15 @@ public class ProductDetailFragment extends Fragment implements AdapterView.OnIte
     }
 
     @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.detach(this).attach(this).commit();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_product_detail, container, false);
 
         Bundle bundle = this.getArguments();

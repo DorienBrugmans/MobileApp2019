@@ -12,7 +12,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -37,17 +36,17 @@ public class MainActivity extends AppCompatActivity {
     CameraSource cameraSource;
     final int RequestCameraPermissionID = 1001;
 
-    Button btnNext,btnLocal;
+    Button btnNext, btnLocal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnNext=(Button) findViewById(R.id.btn_next) ;
-        btnLocal=(Button) findViewById(R.id.btn_nextLocal);
+        btnNext = (Button) findViewById(R.id.btn_next);
+        btnLocal = (Button) findViewById(R.id.btn_nextLocal);
         SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        if (!sharedPreferences.getString("tafelID","0").substring(0,1).contains("0")){
-            String text=sharedPreferences.getString("tafelID","Table1");
+        if (!sharedPreferences.getString("tafelID", "0").substring(0, 1).contains("0")) {
+            String text = sharedPreferences.getString("tafelID", "Table1");
             btnLocal.setText(text);
             saveData(text);
             btnLocal.setVisibility(View.VISIBLE);
@@ -73,16 +72,14 @@ public class MainActivity extends AppCompatActivity {
                 .setBarcodeFormats(Barcode.QR_CODE)
                 .build();
         cameraSource = new CameraSource
-                .Builder(this, barcodeDetector).setRequestedPreviewSize(640,540)
+                .Builder(this, barcodeDetector).setRequestedPreviewSize(640, 540)
                 .build();
 
-        // ASK PERMISSION TO USER FOR CAMERA AND VIBRATION
         cameraPreview.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
                 if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, RequestCameraPermissionID);
-
                     return;
                 }
 
@@ -113,18 +110,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> qrcodes = detections.getDetectedItems();
-                if (qrcodes.size() != 0){
+                if (qrcodes.size() != 0) {
                     new Handler(Looper.getMainLooper()).post(new Runnable() {
                         @Override
                         public void run() {
-                            Vibrator vibrator = (Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
+                            Vibrator vibrator = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                             vibrator.vibrate(1000);
                             saveData(qrcodes.valueAt(0).displayValue);
-                            // STOP CAMERA SO THE USER CAN'T SCAN TWICE
                             cameraSource.stop();
-                            // HIDE CONTAINER
                             cameraPreview.setVisibility(View.INVISIBLE);
-
                             startActivity(new Intent(MainActivity.this, MasterActivity.class));
                         }
                     });
@@ -136,9 +130,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
-            case RequestCameraPermissionID : {
+            case RequestCameraPermissionID: {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                         return;
                     }
 

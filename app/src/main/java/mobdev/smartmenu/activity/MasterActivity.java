@@ -1,10 +1,14 @@
 package mobdev.smartmenu.activity;
 
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,7 +31,7 @@ public class MasterActivity extends AppCompatActivity {
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
     public static List<CartItem> cart;
-    Button btnCart, btnCategorie,btnLogOut;
+    Button btnCart, btnCategorie, btnLogOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +54,6 @@ public class MasterActivity extends AppCompatActivity {
                 fragmentTransaction.replace(R.id.fragmentPlace, cartFragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
-
             }
         });
 
@@ -66,7 +69,6 @@ public class MasterActivity extends AppCompatActivity {
                 fragmentTransaction.replace(R.id.fragmentPlace, categoriesFragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
-
             }
         });
 
@@ -74,7 +76,7 @@ public class MasterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(MasterActivity.this,AccountSignUpActivity.class));
+                startActivity(new Intent(MasterActivity.this, AccountSignUpActivity.class));
                 finish();
             }
         });

@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
-    android:background="@color/colorWhiteTransparent">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="@color/colorWhiteTransparent"
+    android:id="@+id/cartLayout">
 
         <ImageView
             android:id="@+id/productCartImage"
@@ -73,8 +70,16 @@
 
             </LinearLayout>
 
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/trashcan"
+                android:textSize="15dp"
+                android:layout_gravity="center"
+                android:background="@color/colorRed"
+                android:id="@+id/productDelete"
+                android:textAlignment="center"/>
         </LinearLayout>
 
-    </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

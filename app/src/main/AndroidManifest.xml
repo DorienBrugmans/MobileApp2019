@@ -35,6 +35,7 @@
 
         <activity
             android:name=".activity.MasterActivity"
+            android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="stateUnchanged|adjustPan" />
         <activity android:name=".activity.AccountLoginActivity" />
         <activity android:name=".activity.AccountSignUpActivity" />

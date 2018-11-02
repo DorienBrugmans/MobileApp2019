@@ -11,8 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
-
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
@@ -24,7 +22,6 @@ import mobdev.smartmenu.ItemClickListener;
 import mobdev.smartmenu.R;
 import mobdev.smartmenu.viewholder.CategoryViewHolder;
 import model.Category;
-
 
 /**
  * A simple {@link Fragment} subclass.

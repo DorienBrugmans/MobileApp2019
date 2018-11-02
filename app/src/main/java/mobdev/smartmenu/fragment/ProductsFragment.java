@@ -32,7 +32,6 @@ public class ProductsFragment extends Fragment implements AdapterView.OnItemClic
 
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
-    // View myFragment;
     RecyclerView listProducts;
     FirebaseRecyclerAdapter<Food, ProductViewHolder> adapter;
     FirebaseDatabase database;
@@ -60,7 +59,6 @@ public class ProductsFragment extends Fragment implements AdapterView.OnItemClic
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_products, container, false);
 
         Bundle bundle = this.getArguments();
@@ -71,8 +69,8 @@ public class ProductsFragment extends Fragment implements AdapterView.OnItemClic
         layoutManager = new LinearLayoutManager(container.getContext());
         listProducts.setLayoutManager(layoutManager);
         loadProducts();
-        return view;
 
+        return view;
     }
 
     private void loadProducts() {
@@ -106,8 +104,6 @@ public class ProductsFragment extends Fragment implements AdapterView.OnItemClic
                         fragmentTransaction.replace(R.id.fragmentPlace, productDetailFragment);
                         fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.commit();
-
-
                     }
                 });
 
