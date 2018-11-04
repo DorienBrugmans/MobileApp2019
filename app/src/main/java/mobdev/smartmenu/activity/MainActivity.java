@@ -23,6 +23,7 @@ import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.IOException;
 
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     CameraSource cameraSource;
     final int RequestCameraPermissionID = 1001;
 
-    Button btnNext, btnLocal;
+    Button btnNext, btnLocal,btnProducts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         btnNext = (Button) findViewById(R.id.btn_next);
         btnLocal = (Button) findViewById(R.id.btn_nextLocal);
+        btnProducts = (Button) findViewById(R.id.btn_products);
         SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         if (!sharedPreferences.getString("tafelID", "0").substring(0, 1).contains("0")) {
             String text = sharedPreferences.getString("tafelID", "Table1");
@@ -54,6 +56,15 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     startActivity(new Intent(MainActivity.this, MasterActivity.class));
+                }
+            });
+        }
+        if (FirebaseAuth.getInstance().getCurrentUser().getEmail().equals("admin@hotmail.com")){
+            btnProducts.setVisibility(View.VISIBLE);
+            btnProducts.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(MainActivity.this, RestaurantProductActivity.class));
                 }
             });
         }

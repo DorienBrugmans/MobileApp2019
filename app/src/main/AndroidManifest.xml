@@ -17,18 +17,22 @@
         <activity android:name=".activity.Splashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="barcode" />
+
         <activity
             android:name=".activity.MasterActivity"
             android:configChanges="orientation|screenSize"
@@ -36,6 +40,8 @@
         <activity android:name=".activity.AccountLoginActivity" />
         <activity android:name=".activity.AccountSignUpActivity" />
         <activity android:name=".activity.ResetPasswordActivity" />
-        <activity android:name=".activity.NoInternetActivity"></activity>
+        <activity android:name=".activity.NoInternetActivity" />
+        <activity android:name=".activity.RestaurantProductActivity"></activity>
     </application>
+
 </manifest>
