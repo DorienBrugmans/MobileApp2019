@@ -94,7 +94,7 @@ public class RestaurantProductFragment extends Fragment {
                         fragmentManager = getActivity().getSupportFragmentManager();
 
                         fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.restaurantFragmentPlace2, restaurantProductDetailFragment);
+                        fragmentTransaction.replace(R.id.restaurantFragmentPlace, restaurantProductDetailFragment);
                         fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.commit();
                     }

@@ -4,6 +4,7 @@ package mobdev.smartmenu.fragment;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -28,7 +29,8 @@ import model.Food;
 
 
 public class RestaurantProductDetailFragment extends Fragment {
-
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
     RecyclerView productDetail;
     FirebaseRecyclerAdapter<Food, RestaurantProductDetailViewHolder> adapter;
     FirebaseDatabase database;
@@ -86,6 +88,19 @@ public class RestaurantProductDetailFragment extends Fragment {
                 viewHolder.product_description.setText(model.getDescription());
                 viewHolder.product_category.setText(model.getCategoryId());
                 viewHolder.product_price.setText("€ " + model.getPrice());
+
+                viewHolder.editBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                       updateProduct(productId,viewHolder.product_name.getText().toString(),viewHolder.product_price.getText().toString().substring(2),viewHolder.product_description.getText().toString(),model.getImage(),"0",viewHolder.product_category.getText().toString());
+                    }
+                });
+                viewHolder.deleteBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        deleteProduct(productId);
+                    }
+                });
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
@@ -97,5 +112,32 @@ public class RestaurantProductDetailFragment extends Fragment {
 
         adapter.notifyDataSetChanged();
         productDetail.setAdapter(adapter);
+    }
+    private boolean updateProduct(String id,String name,String price,String description,String image,String discount,String categoryId){
+        DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("Food").child(id);
+        Food food=new Food();
+        food.setName(name);
+        food.setImage(image);
+        food.setPrice(price);
+        food.setDescription(description);
+        food.setCategoryId(categoryId);
+        food.setImage(image);
+        food.setDiscount(discount);
+        databaseReference.setValue(food);
+        Toast.makeText(getContext(),"Product updated successfully",Toast.LENGTH_LONG).show();
+        return true;
+    }
+    private void deleteProduct(String id){
+        DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("Food").child(id);
+        databaseReference.removeValue();
+        Toast.makeText(getContext(),"Product deleted successfully",Toast.LENGTH_LONG).show();
+
+        RestaurantProductFragment restaurantProductFragment = new RestaurantProductFragment();
+        fragmentManager = getActivity().getSupportFragmentManager();
+
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.restaurantFragmentPlace, restaurantProductFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }
