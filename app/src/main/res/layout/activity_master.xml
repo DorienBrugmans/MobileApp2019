@@ -51,25 +51,58 @@
 
     </RelativeLayout>
 
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/footer"
         android:layout_alignParentBottom="true"
         android:gravity="center"
-        android:background="@color/colorBrown">
+        android:background="@color/colorPrimaryDark"
+        android:padding="0dp">
 
         <Button
-            android:id="@+id/btnCart"
-            android:layout_width="wrap_content"
+            android:id="@+id/btnCategorie"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="0dp"
             android:padding="0dp"
-            android:background="@color/colorPrimaryDark"
-            android:text="CART"
-            android:textColor="@color/colorWhite"/>
+            android:layout_weight="1"
+            android:text="@string/categories"
+            android:background="@color/fui_transparent"
+            android:textColor="@color/colorWhite" />
 
-    </RelativeLayout>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="30dp"
+            android:background="@color/colorWhite"/>
+
+        <Button
+            android:id="@+id/btnCart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="0dp"
+            android:layout_weight="1"
+            android:padding="0dp"
+            android:text="@string/cart"
+            android:background="@color/fui_transparent"
+            android:textColor="@color/colorWhite" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="30dp"
+            android:background="@color/colorWhite"/>
+
+        <Button
+            android:id="@+id/btnLogOut"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="0dp"
+            android:layout_weight="1"
+            android:padding="0dp"
+            android:text="@string/logout"
+            android:background="@color/fui_transparent"
+            android:textColor="@color/colorWhite" />
+
+    </LinearLayout>
 
 </RelativeLayout>

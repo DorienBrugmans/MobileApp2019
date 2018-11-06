@@ -12,17 +12,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import mobdev.smartmenu.ItemClickListener;
 import mobdev.smartmenu.R;
 import mobdev.smartmenu.viewholder.CategoryViewHolder;
 import model.Category;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,30 +61,28 @@ public class CategoriesFragment extends Fragment {
         listCategory.setHasFixedSize(true);
         layoutManager=new LinearLayoutManager(container.getContext());
         listCategory.setLayoutManager(layoutManager);
+
         loadCategories();
+
         return myFragment;
     }
 
- /*   @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        ProductsFragment productsFragment = new ProductsFragment();
-        Bundle bundle = new Bundle();
-        bundle.putInt("categoryID", position);
-
-        productsFragment.setArguments(bundle);
-        fragmentManager = getActivity().getSupportFragmentManager();
-
-        fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragmentPlace, productsFragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-    }*/
     private void loadCategories() {
         adapter=new FirebaseRecyclerAdapter<Category, CategoryViewHolder>(Category.class,R.layout.listview_item_layout,CategoryViewHolder.class,categories) {
             @Override
             protected void populateViewHolder(CategoryViewHolder viewHolder, final Category model, int position) {
-                viewHolder.category_name.setText(model.getName());
-                Picasso.with(getActivity()).load(model.getImage()).into(viewHolder.category_image);
+                Picasso.with(getActivity()).load(model.getImage()).into(viewHolder.category_image, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        viewHolder.category_progress.setVisibility(View.GONE);
+                        viewHolder.category_name.setText(model.getName());
+                    }
+
+                    @Override
+                    public void onError() {
+
+                    }
+                });
 
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override

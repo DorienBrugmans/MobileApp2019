@@ -23,6 +23,7 @@ import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.IOException;
 
@@ -36,13 +37,37 @@ public class MainActivity extends AppCompatActivity {
     CameraSource cameraSource;
     final int RequestCameraPermissionID = 1001;
 
-    Button btnNext;
+    Button btnNext, btnLocal,btnProducts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnNext=(Button) findViewById(R.id.btn_next) ;
+        btnNext = (Button) findViewById(R.id.btn_next);
+        btnLocal = (Button) findViewById(R.id.btn_nextLocal);
+        btnProducts = (Button) findViewById(R.id.btn_products);
+        SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+        if (!sharedPreferences.getString("tafelID", "0").substring(0, 1).contains("0")) {
+            String text = sharedPreferences.getString("tafelID", "Table1");
+            btnLocal.setText(text);
+            saveData(text);
+            btnLocal.setVisibility(View.VISIBLE);
+            btnLocal.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(MainActivity.this, MasterActivity.class));
+                }
+            });
+        }
+        if (FirebaseAuth.getInstance().getCurrentUser().getEmail().equals("admin@hotmail.com")){
+            btnProducts.setVisibility(View.VISIBLE);
+            btnProducts.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(MainActivity.this, RestaurantProductActivity.class));
+                }
+            });
+        }
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,16 +83,14 @@ public class MainActivity extends AppCompatActivity {
                 .setBarcodeFormats(Barcode.QR_CODE)
                 .build();
         cameraSource = new CameraSource
-                .Builder(this, barcodeDetector).setRequestedPreviewSize(640,540)
+                .Builder(this, barcodeDetector).setRequestedPreviewSize(640, 540)
                 .build();
 
-        // ASK PERMISSION TO USER FOR CAMERA AND VIBRATION
         cameraPreview.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
                 if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, RequestCameraPermissionID);
-
                     return;
                 }
 
@@ -98,16 +121,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> qrcodes = detections.getDetectedItems();
-                if (qrcodes.size() != 0){
+                if (qrcodes.size() != 0) {
                     new Handler(Looper.getMainLooper()).post(new Runnable() {
                         @Override
                         public void run() {
-                            Vibrator vibrator = (Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
+                            Vibrator vibrator = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                             vibrator.vibrate(1000);
                             saveData(qrcodes.valueAt(0).displayValue);
-                            // STOP CAMERA SO THE USER CAN'T SCAN TWICE
                             cameraSource.stop();
-                            // HIDE CONTAINER
                             cameraPreview.setVisibility(View.INVISIBLE);
                             startActivity(new Intent(MainActivity.this, MasterActivity.class));
                         }
@@ -120,9 +141,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
-            case RequestCameraPermissionID : {
+            case RequestCameraPermissionID: {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                         return;
                     }
 

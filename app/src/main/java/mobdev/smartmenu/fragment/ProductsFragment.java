@@ -12,11 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import mobdev.smartmenu.ItemClickListener;
@@ -32,7 +32,6 @@ public class ProductsFragment extends Fragment implements AdapterView.OnItemClic
 
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
-    // View myFragment;
     RecyclerView listProducts;
     FirebaseRecyclerAdapter<Food, ProductViewHolder> adapter;
     FirebaseDatabase database;
@@ -60,7 +59,6 @@ public class ProductsFragment extends Fragment implements AdapterView.OnItemClic
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_products, container, false);
 
         Bundle bundle = this.getArguments();
@@ -71,16 +69,26 @@ public class ProductsFragment extends Fragment implements AdapterView.OnItemClic
         layoutManager = new LinearLayoutManager(container.getContext());
         listProducts.setLayoutManager(layoutManager);
         loadProducts();
-        return view;
 
+        return view;
     }
 
     private void loadProducts() {
         adapter = new FirebaseRecyclerAdapter<Food, ProductViewHolder>(Food.class, R.layout.productview_item_layout, ProductViewHolder.class, products.orderByChild("categoryId").equalTo(categoryId)) {
             @Override
             protected void populateViewHolder(ProductViewHolder viewHolder, final Food model, int position) {
-                viewHolder.product_name.setText(model.getName());
-                Picasso.with(getActivity()).load(model.getImage()).into(viewHolder.product_image);
+                Picasso.with(getActivity()).load(model.getImage()).into(viewHolder.product_image, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        viewHolder.product_progress.setVisibility(View.GONE);
+                        viewHolder.product_name.setText(model.getName());
+                    }
+
+                    @Override
+                    public void onError() {
+
+                    }
+                });
 
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
@@ -96,8 +104,6 @@ public class ProductsFragment extends Fragment implements AdapterView.OnItemClic
                         fragmentTransaction.replace(R.id.fragmentPlace, productDetailFragment);
                         fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.commit();
-
-
                     }
                 });
 

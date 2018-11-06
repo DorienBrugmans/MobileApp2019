@@ -1,36 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp"
-    android:background="@color/colorWhiteTransparent">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:id="@+id/cartLayout">
 
         <ImageView
             android:id="@+id/productCartImage"
-            android:layout_width="0dp"
-            android:layout_height="150dp"
-            android:layout_weight=".50" />
+            android:layout_width="fill_parent"
+            android:scaleType="fitXY"
+            android:layout_height="150dp" />
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:layout_weight=".50"
             android:orientation="vertical"
-            android:gravity="center_vertical">
-
+            android:gravity="center_vertical"
+            android:background="@color/colorPrimaryDark">
 
             <TextView
                 android:id="@+id/productCartName"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:textSize="20dp"
-                android:textColor="@color/colorRed"
+                android:textColor="@color/colorWhite"
                 android:textAlignment="center"/>
 
             <LinearLayout
@@ -40,15 +34,14 @@
                 android:textAlignment="center"
                 android:gravity="center_horizontal">
 
-                //count
                 <Button
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:textAlignment="center"
-                    android:background="@color/colorRed"
+                    android:background="@color/colorWhiteTransparent"
                     android:textSize="15dp"
-                    android:text="-"
-                    android:textColor="@color/colorGold"
+                    android:text="@string/min"
+                    android:textColor="@color/colorWhite"
                     android:id="@+id/minCount"
                     android:layout_marginRight="15dp"/>
 
@@ -56,25 +49,33 @@
                     android:id="@+id/productCartCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-                    android:textColor="@color/colorRed"
-                    android:textSize="20dp"/>
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:textSize="25dp"/>
 
                 <Button
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:text="+"
+                    android:text="@string/plus"
                     android:textSize="15dp"
-                    android:background="@color/colorRed"
-                    android:textColor="@color/colorGold"
+                    android:background="@color/colorWhiteTransparent"
+                    android:textColor="@color/colorWhite"
                     android:id="@+id/minPlus"
                     android:textAlignment="center"
                     android:layout_marginLeft="15dp"/>
 
             </LinearLayout>
 
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/trashcan"
+                android:textSize="15dp"
+                android:layout_gravity="center"
+                android:background="@color/colorWhiteTransparent"
+                android:id="@+id/productDelete"
+                android:textAlignment="center"/>
         </LinearLayout>
 
-    </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

@@ -9,8 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="3"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="3">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/layoutCart"
@@ -21,45 +21,39 @@
         </android.support.v7.widget.RecyclerView>
 
         <LinearLayout
-            android:layout_below="@id/layoutCart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
+            android:layout_below="@id/layoutCart"
             android:layout_weight="1"
-            android:background="@android:color/background_dark">
-
+            android:background="@android:color/background_dark"
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/orderPrice"
                 android:layout_width="263dp"
-                android:textSize="15dp"
-                android:textColor="@color/colorWhite"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_weight="2"
                 android:gravity="center"
-                android:text="€ 1234,99" />
+                android:textColor="@color/colorWhite"
+                android:textSize="15dp" />
 
             <Button
+                android:id="@+id/orderBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorWhite"
-                android:textSize="15dp"
-                android:layout_weight="1"
-                android:background="@color/colorRed"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentTop="true"
-                android:text="PLACE ORDER"
-                android:id="@+id/orderBtn"/>
+                android:layout_weight="1"
+                android:background="@color/colorRed"
+                android:text="@string/placeOrder"
+                android:textColor="@color/colorWhite"
+                android:textSize="15dp" />
 
         </LinearLayout>
 
-
-
     </LinearLayout>
-
-
 
 </FrameLayout>

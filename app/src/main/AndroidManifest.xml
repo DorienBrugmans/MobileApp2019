@@ -9,8 +9,7 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
-        android:label="SmartMenu"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.Splashscreen">
@@ -27,17 +26,27 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="barcode" />
 
         <activity
             android:name=".activity.MasterActivity"
+            android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="stateUnchanged|adjustPan" />
         <activity android:name=".activity.AccountLoginActivity" />
         <activity android:name=".activity.AccountSignUpActivity" />
         <activity android:name=".activity.ResetPasswordActivity" />
-        <activity android:name=".activity.NoInternetActivity"></activity>
+        <activity android:name=".activity.NoInternetActivity" />
+        <activity android:name=".activity.RestaurantProductActivity" />
+        <activity
+            android:name=".activity.RestaurantProductDetailActivity"
+            android:parentActivityName=".activity.RestaurantProductActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.RestaurantProductActivity" />
+        </activity>
     </application>
 
 </manifest>

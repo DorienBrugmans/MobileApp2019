@@ -14,15 +14,36 @@
         android:background="@color/colorPrimaryDark">
 
         <Button
+            android:id="@+id/btn_nextLocal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/camera"
+            android:layout_alignTop="@+id/btn_next"
+            android:background="@color/colorRed"
+            android:visibility="invisible"
+            android:textColor="@color/colorWhite" />
+
+        <Button
             android:id="@+id/btn_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/camera"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="27dp"
+            android:layout_alignTop="@+id/imageView"
             android:background="@color/colorRed"
             android:text="VIP"
             android:textColor="@color/colorWhite" />
+
+        <Button
+            android:id="@+id/btn_products"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imageView"
+            android:layout_alignStart="@+id/btn_next"
+            android:background="@color/colorRed"
+            android:text="PRODUCTS"
+            android:textColor="@color/colorWhite"
+            android:visibility="invisible" />
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="100dp"
@@ -44,8 +65,5 @@
         </SurfaceView>
 
     </RelativeLayout>
-
-
-
 
 </RelativeLayout>
