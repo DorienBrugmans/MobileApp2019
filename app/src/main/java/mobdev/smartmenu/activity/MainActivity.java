@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     CameraSource cameraSource;
     final int RequestCameraPermissionID = 1001;
 
-    Button btnNext, btnLocal,btnProducts;
+    Button btnNext, btnLocal,btnProducts,btnReview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         btnNext = (Button) findViewById(R.id.btn_next);
         btnLocal = (Button) findViewById(R.id.btn_nextLocal);
         btnProducts = (Button) findViewById(R.id.btn_products);
+        btnReview = (Button) findViewById(R.id.btn_review);
         SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         if (!sharedPreferences.getString("tafelID", "0").substring(0, 1).contains("0")) {
             String text = sharedPreferences.getString("tafelID", "Table1");
@@ -65,6 +66,15 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     startActivity(new Intent(MainActivity.this, RestaurantProductActivity.class));
+                }
+            });
+        }
+        if (FirebaseAuth.getInstance().getCurrentUser().getEmail().equals("admin@hotmail.com")){
+            btnReview.setVisibility(View.VISIBLE);
+            btnReview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(MainActivity.this, GetReviewActivity.class));
                 }
             });
         }

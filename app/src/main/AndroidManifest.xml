@@ -40,8 +40,9 @@
         <activity android:name=".activity.AccountSignUpActivity" />
         <activity android:name=".activity.ResetPasswordActivity" />
         <activity android:name=".activity.NoInternetActivity" />
-        <activity android:name=".activity.RestaurantProductActivity"
-            android:configChanges="orientation|screenSize"/>
+        <activity
+            android:name=".activity.RestaurantProductActivity"
+            android:configChanges="orientation|screenSize" />
         <activity
             android:name=".activity.RestaurantProductDetailActivity"
             android:configChanges="orientation|screenSize"
@@ -50,7 +51,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.RestaurantProductActivity" />
         </activity>
-        <activity android:name=".activity.ReviewActivity"></activity>
+        <activity android:name=".activity.ReviewActivity" />
+        <activity android:name=".activity.GetReviewActivity"></activity>
     </application>
 
 </manifest>
