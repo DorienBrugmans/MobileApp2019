@@ -44,6 +44,17 @@
             android:textColor="@color/colorWhite"
             android:visibility="invisible" />
 
+        <Button
+            android:id="@+id/btn_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/btn_nextLocal"
+            android:layout_alignTop="@+id/btn_products"
+            android:background="@color/colorRed"
+            android:text="REVIEWS"
+            android:textColor="@color/colorWhite"
+            android:visibility="invisible" />
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="100dp"
