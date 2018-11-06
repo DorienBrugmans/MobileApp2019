@@ -40,14 +40,17 @@
         <activity android:name=".activity.AccountSignUpActivity" />
         <activity android:name=".activity.ResetPasswordActivity" />
         <activity android:name=".activity.NoInternetActivity" />
-        <activity android:name=".activity.RestaurantProductActivity" />
+        <activity android:name=".activity.RestaurantProductActivity"
+            android:configChanges="orientation|screenSize"/>
         <activity
             android:name=".activity.RestaurantProductDetailActivity"
+            android:configChanges="orientation|screenSize"
             android:parentActivityName=".activity.RestaurantProductActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.RestaurantProductActivity" />
         </activity>
+        <activity android:name=".activity.ReviewActivity"></activity>
     </application>
 
 </manifest>

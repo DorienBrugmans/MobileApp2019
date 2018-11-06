@@ -7,6 +7,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -34,7 +35,9 @@ import java.util.List;
 
 import mobdev.smartmenu.CartAdapter;
 import mobdev.smartmenu.R;
+import mobdev.smartmenu.activity.MainActivity;
 import mobdev.smartmenu.activity.MasterActivity;
+import mobdev.smartmenu.activity.ReviewActivity;
 import model.CartItem;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -107,15 +110,31 @@ public class CartFragment extends Fragment {
                         MasterActivity.cart.clear();
 
                         SumPrice();
+                        AlertDialog.Builder alertDialogBuilder2 = new AlertDialog.Builder(getContext());
+                        alertDialogBuilder2.setTitle("SmartMenu");
+                        alertDialogBuilder2.setIcon(R.drawable.logo);
+                        alertDialogBuilder2.setMessage("Thank you, would you place a review please?");
+                        alertDialogBuilder2.setCancelable(true);
+                        alertDialogBuilder2.setPositiveButton("REVIEW", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                startActivity(new Intent(getActivity(), ReviewActivity.class));
+                            }
+                        });
+                        alertDialogBuilder2.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                CategoriesFragment categoriesFragment = new CategoriesFragment();
+                                fragmentManager = getActivity().getSupportFragmentManager();
 
-                        CategoriesFragment categoriesFragment = new CategoriesFragment();
-                        fragmentManager = getActivity().getSupportFragmentManager();
-
-                        fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.fragmentPlace, categoriesFragment);
-                        fragmentTransaction.addToBackStack(null);
-                        fragmentTransaction.commit();
-
+                                fragmentTransaction = fragmentManager.beginTransaction();
+                                fragmentTransaction.replace(R.id.fragmentPlace, categoriesFragment);
+                                fragmentTransaction.addToBackStack(null);
+                                fragmentTransaction.commit();
+                            }
+                            });
+                        AlertDialog alertDialog2 = alertDialogBuilder2.create();
+                        alertDialog2.show();
                         notification("Thanks for your order!", "Your order is being prepared!");
                         Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {

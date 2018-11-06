@@ -1,6 +1,8 @@
 package mobdev.smartmenu.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -65,6 +67,17 @@ public class RestaurantProductDetailFragment extends Fragment {
         loadProduct();
 
         return view;
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig)
+    {
+        super.onConfigurationChanged(newConfig);
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+           startActivity(new Intent(getActivity(),RestaurantProductActivity.class));
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            startActivity(new Intent(getActivity(),RestaurantProductActivity.class));
+        }
     }
 
     private void loadProduct() {

@@ -2,6 +2,7 @@ package mobdev.smartmenu.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -59,7 +60,16 @@ public class RestaurantProductDetailActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         setupRecyclerView((android.support.v7.widget.RecyclerView) recyclerView);
     }
-
+    @Override
+    public void onConfigurationChanged(Configuration newConfig)
+    {
+        super.onConfigurationChanged(newConfig);
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            startActivity(new Intent(RestaurantProductDetailActivity.this,RestaurantProductActivity.class));
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            startActivity(new Intent(RestaurantProductDetailActivity.this,RestaurantProductActivity.class));
+        }
+    }
     private void setupRecyclerView(android.support.v7.widget.RecyclerView recyclerView) {
         adapter = new FirebaseRecyclerAdapter<Food, RestaurantProductDetailViewHolder>(Food.class,
                 R.layout.restaurant_product_detail_content, RestaurantProductDetailViewHolder.class, product.orderByKey().equalTo(getIntent().getStringExtra("restaurant_product_id"))) {
