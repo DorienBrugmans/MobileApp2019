@@ -5,14 +5,15 @@
     android:fitsSystemWindows="true"
     android:background="@drawable/background"
     tools:ignore="MergeRootFrame"
+    android:layout_gravity="center"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".activity.RestaurantProductDetailActivity">
 
     <android.support.v7.widget.RecyclerView
+        android:background="@color/colorPrimaryDark"
         android:id="@+id/restaurant_product_detail_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
     </android.support.v7.widget.RecyclerView>
 </android.support.constraint.ConstraintLayout>
