@@ -9,10 +9,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 import mobdev.smartmenu.ItemClickListener;
 import mobdev.smartmenu.R;
@@ -63,11 +65,49 @@ public class RestaurantProductDetailActivity extends AppCompatActivity {
                 R.layout.restaurant_product_detail_content, RestaurantProductDetailViewHolder.class, product.orderByKey().equalTo(getIntent().getStringExtra("restaurant_product_id"))) {
             @Override
             protected void populateViewHolder(RestaurantProductDetailViewHolder viewHolder, Food model, int position) {
+                Picasso.with(RestaurantProductDetailActivity.this).load(model.getImage()).into(viewHolder.product_image);
                 viewHolder.product_name.setText(model.getName());
+                viewHolder.product_categoryId.setText(model.getCategoryId());
+                viewHolder.product_description.setText(model.getDescription());
+                viewHolder.product_price.setText(model.getPrice());
+
+                viewHolder.button_edit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        updateProduct(getIntent().getStringExtra("restaurant_product_id"), viewHolder.product_name.getText().toString(),viewHolder.product_price.getText().toString(),viewHolder.product_description.getText().toString(),model.getImage(),"0",viewHolder.product_categoryId.getText().toString());
+                    }
+                });
+                viewHolder.button_delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        deleteProduct(getIntent().getStringExtra("restaurant_product_id"));
+                    }
+                });
             }
         };
 
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
     }
+    private boolean updateProduct(String id,String name,String price,String description,String image,String discount,String categoryId){
+        DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("Food").child(id);
+        Food food=new Food();
+        food.setName(name);
+        food.setImage(image);
+        food.setPrice(price);
+        food.setDescription(description);
+        food.setCategoryId(categoryId);
+        food.setImage(image);
+        food.setDiscount(discount);
+        databaseReference.setValue(food);
+        Toast.makeText(RestaurantProductDetailActivity.this,"Product updated successfully",Toast.LENGTH_LONG).show();
+        return true;
+    }
+    private void deleteProduct(String id) {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Food").child(id);
+        databaseReference.removeValue();
+        Toast.makeText(RestaurantProductDetailActivity.this, "Product deleted successfully", Toast.LENGTH_LONG).show();
+        startActivity(new Intent(RestaurantProductDetailActivity.this, RestaurantProductActivity.class));
+    }
+
 }

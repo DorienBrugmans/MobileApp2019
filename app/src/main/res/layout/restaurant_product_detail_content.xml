@@ -3,8 +3,19 @@
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     tools:context=".fragment.RestaurantProductDetailFragment"
-    android:id="@+id/restaurant_product_detail_content">
+    android:id="@+id/restaurant_product_detail_content"
+    android:gravity="center">
+
+
+    <ImageView
+        android:id="@+id/restaurantProductImage"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        />
 
 
     <LinearLayout
@@ -17,8 +28,8 @@
             android:layout_height="wrap_content"
             android:text="@string/name" />
 
-        <TextView
-            android:id="@+id/product_name"
+        <EditText
+            android:id="@+id/restaurantProductName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
@@ -37,7 +48,7 @@
             android:text="@string/price" />
 
         <TextView
-            android:id="@+id/product_category_id"
+            android:id="@+id/restaurantProductCatId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
@@ -55,8 +66,8 @@
             android:layout_height="wrap_content"
             android:text="@string/description" />
 
-        <TextView
-            android:id="@+id/product_description"
+        <EditText
+            android:id="@+id/restaurantProductDesc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
@@ -74,8 +85,8 @@
             android:layout_height="wrap_content"
             android:text="@string/price" />
 
-        <TextView
-            android:id="@+id/product_price"
+        <EditText
+            android:id="@+id/restaurantProductPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
@@ -83,11 +94,19 @@
             android:textColorHint="@color/colorWhite" />
     </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
-
+        <Button
+            android:id="@+id/product_edit"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="30dp"
+            android:background="@color/colorRed"
+            android:text="UPDATE" />
         <Button
             android:id="@+id/product_delete"
             android:layout_width="125dp"
@@ -96,8 +115,8 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="30dp"
             android:background="@color/colorRed"
-            android:text="@string/addCart" />
+            android:text="DELETE" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>
