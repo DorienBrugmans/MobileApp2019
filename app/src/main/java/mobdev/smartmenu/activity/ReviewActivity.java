@@ -36,7 +36,6 @@ public class ReviewActivity extends AppCompatActivity {
         review = database.getReference("Review");
         checkBox1=(CheckBox)findViewById(R.id.checkbox1);
         checkBox3=(CheckBox)findViewById(R.id.checkbox3);
-        checkBox5=(CheckBox)findViewById(R.id.checkbox5);
         checkBox7=(CheckBox)findViewById(R.id.checkbox7);
         checkBox9=(CheckBox)findViewById(R.id.checkbox9);
         checkBox10=(CheckBox)findViewById(R.id.checkbox10);
@@ -61,9 +60,7 @@ public class ReviewActivity extends AppCompatActivity {
 
     public void onCheckboxClicked(View view) {
             switch(view.getId()) {
-
                 case R.id.checkbox1:
-
                     checkBox3.setChecked(false);
                     checkBox5.setChecked(false);
                     checkBox7.setChecked(false);
@@ -71,48 +68,29 @@ public class ReviewActivity extends AppCompatActivity {
                     checkBox10.setChecked(false);
                     checkBox=checkBox1;
                     break;
-
                 case R.id.checkbox3:
-
                     checkBox1.setChecked(false);
                     checkBox5.setChecked(false);
                     checkBox7.setChecked(false);
                     checkBox9.setChecked(false);
                     checkBox10.setChecked(false);
                     checkBox=checkBox3;
-
                     break;
-                case R.id.checkbox5:
-
-                    checkBox3.setChecked(false);
-                    checkBox1.setChecked(false);
-                    checkBox7.setChecked(false);
-                    checkBox9.setChecked(false);
-                    checkBox10.setChecked(false);
-                    checkBox=checkBox5;
-
-                    break;
-
                 case R.id.checkbox7:
-
                     checkBox3.setChecked(false);
                     checkBox5.setChecked(false);
                     checkBox1.setChecked(false);
                     checkBox9.setChecked(false);
                     checkBox10.setChecked(false);
                     checkBox=checkBox7;
-
                     break;
-
                 case R.id.checkbox9:
-
                     checkBox3.setChecked(false);
                     checkBox5.setChecked(false);
                     checkBox7.setChecked(false);
                     checkBox1.setChecked(false);
                     checkBox10.setChecked(false);
                     checkBox=checkBox9;
-
                     break;
                 case R.id.checkbox10:
                     checkBox3.setChecked(false);
@@ -123,6 +101,6 @@ public class ReviewActivity extends AppCompatActivity {
                     checkBox=checkBox10;
                     break;
             }
-            }
+        }
 }
 
