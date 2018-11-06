@@ -42,10 +42,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/txtOutput"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
             android:background="@color/colorRed"
             android:text="@string/refresh"
-            android:id="@+id/btnRefresh"
             android:layout_marginTop="15dp"/>
 
     </RelativeLayout>
