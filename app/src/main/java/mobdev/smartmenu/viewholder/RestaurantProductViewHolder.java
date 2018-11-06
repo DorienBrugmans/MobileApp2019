@@ -17,12 +17,7 @@ public class RestaurantProductViewHolder extends RecyclerView.ViewHolder impleme
 
     public RestaurantProductViewHolder(View itemView){
         super(itemView);
-        product_image=(ImageView)itemView.findViewById(R.id.restaurantProductImage);
-        product_name=(TextView)itemView.findViewById(R.id.restaurantProductName);
-
-        product_progress = (ProgressBar) itemView.findViewById(R.id.restaurantProgress);
-
-        product_progress.setVisibility(View.VISIBLE);
+        product_name=(TextView)itemView.findViewById(R.id.product_name);
 
         itemView.setOnClickListener(this);
     }
