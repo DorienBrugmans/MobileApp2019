@@ -13,6 +13,8 @@ import android.view.View;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import mobdev.smartmenu.ItemClickListener;
 import mobdev.smartmenu.R;
@@ -55,7 +57,19 @@ public class RestaurantProductActivity extends AppCompatActivity {
                 R.layout.restaurant_product_list_content, RestaurantProductViewHolder.class, products) {
             @Override
             protected void populateViewHolder(RestaurantProductViewHolder viewHolder, Food model, int position) {
-                viewHolder.product_name.setText(model.getName());
+                Picasso.with(RestaurantProductActivity.this).load(model.getImage()).into(viewHolder.product_image, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        viewHolder.product_progress.setVisibility(View.GONE);
+                        viewHolder.product_name.setText(model.getName());
+                    }
+
+                    @Override
+                    public void onError() {
+
+                    }
+                });
+
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {

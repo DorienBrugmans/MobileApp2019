@@ -40,7 +40,7 @@ public class RestaurantProductDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater ,ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.restaurant_product_detail_content, container, false);
 
-        product_name = (TextView) view.findViewById(R.id.restaurant_product_detail_content);
+        product_name = (TextView) view.findViewById(R.id.product_name);
 
         loadProduct();
 

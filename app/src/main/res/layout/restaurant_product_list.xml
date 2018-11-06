@@ -5,8 +5,6 @@
     android:id="@+id/restaurant_product_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
     tools:context=".activity.RestaurantProductActivity"
     app:layoutManager="android.support.v7.widget.LinearLayoutManager"
     tools:listitem="@layout/restaurant_product_list_content" />

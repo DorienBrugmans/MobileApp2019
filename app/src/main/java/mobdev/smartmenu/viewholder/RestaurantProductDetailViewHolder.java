@@ -13,6 +13,6 @@ public class RestaurantProductDetailViewHolder extends RecyclerView.ViewHolder {
 
     public RestaurantProductDetailViewHolder(View itemView){
         super(itemView);
-        product_name=(TextView)itemView.findViewById(R.id.restaurant_product_detail_content);
+        product_name=(TextView)itemView.findViewById(R.id.product_name);
     }
 }
