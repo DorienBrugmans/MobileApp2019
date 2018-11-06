@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -48,7 +49,7 @@ public class CartAdapter extends RecyclerView.Adapter {
         public Button cart_count_plus;
         public TextView cart_count;
         public ImageButton cart_delete;
-        public LinearLayout cart_layout;
+        public RelativeLayout cart_layout;
 
         public Button btnOrder;
 
@@ -62,7 +63,7 @@ public class CartAdapter extends RecyclerView.Adapter {
             cart_count_plus = (Button) itemView.findViewById(R.id.minPlus);
             cart_count = (TextView) itemView.findViewById(R.id.productCartCount);
             cart_delete = (ImageButton) itemView.findViewById(R.id.productDelete);
-            cart_layout = (LinearLayout) itemView.findViewById(R.id.cartLayout);
+            cart_layout = (RelativeLayout) itemView.findViewById(R.id.cartLayout);
         }
 
         public void setItemClickListener(ItemClickListener itemClickListener) {
