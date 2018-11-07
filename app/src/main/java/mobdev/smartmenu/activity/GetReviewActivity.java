@@ -43,7 +43,7 @@ public class GetReviewActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         setupRecyclerView((android.support.v7.widget.RecyclerView) recyclerView);
     }
-
+    //method for get all given reviews from firebase
     private void setupRecyclerView(android.support.v7.widget.RecyclerView recyclerView) {
         adapter = new FirebaseRecyclerAdapter<Review, ReviewViewHolder>(Review.class,
                 R.layout.review_layout, ReviewViewHolder.class, review) {

@@ -90,66 +90,52 @@ public class CartFragment extends Fragment {
             if (cart.size() == 0) {
                 Toast.makeText(getActivity(), "You have nothing in your shopping cart to place an order, please place an order!", Toast.LENGTH_SHORT).show();
             } else {
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+
+                String value = "Order" + products.push().getKey();
+                products.child(value).child("item").setValue(MasterActivity.cart);
+
+                products.child(value).child("tableId").setValue(sharedPreferences.getString("tafelID", ""));
+
+                MasterActivity.cart.clear();
+
+                SumPrice();
+                //send a push notification to thank
+                notification("Thanks for your order!", "Your order is being prepared!");
+                //send a push notification when order has been prepared
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        notification("Your order has been prepared!", "Enjoy your meal!");
+                    }
+                }, 10000);
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
                 alertDialogBuilder.setTitle("SmartMenu");
                 alertDialogBuilder.setIcon(R.drawable.logo);
-                alertDialogBuilder.setMessage("Are you sure?");
+                alertDialogBuilder.setMessage("Thanks for your order, would you write a review?");
                 alertDialogBuilder.setCancelable(true);
 
                 alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", MODE_PRIVATE);
 
-                        String value = "Order" + products.push().getKey();
-                        products.child(value).child("item").setValue(MasterActivity.cart);
+                        startActivity(new Intent(getActivity(), ReviewActivity.class));
 
-                        products.child(value).child("tableId").setValue(sharedPreferences.getString("tafelID", ""));
-
-                        MasterActivity.cart.clear();
-
-                        SumPrice();
-                        AlertDialog.Builder alertDialogBuilder2 = new AlertDialog.Builder(getContext());
-                        alertDialogBuilder2.setTitle("SmartMenu");
-                        alertDialogBuilder2.setIcon(R.drawable.logo);
-                        alertDialogBuilder2.setMessage("Thank you, would you place a review please?");
-                        alertDialogBuilder2.setCancelable(true);
-                        alertDialogBuilder2.setPositiveButton("REVIEW", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                startActivity(new Intent(getActivity(), ReviewActivity.class));
-                            }
-                        });
-                        alertDialogBuilder2.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                CategoriesFragment categoriesFragment = new CategoriesFragment();
-                                fragmentManager = getActivity().getSupportFragmentManager();
-
-                                fragmentTransaction = fragmentManager.beginTransaction();
-                                fragmentTransaction.replace(R.id.fragmentPlace, categoriesFragment);
-                                fragmentTransaction.addToBackStack(null);
-                                fragmentTransaction.commit();
-                            }
-                            });
-                        AlertDialog alertDialog2 = alertDialogBuilder2.create();
-                        alertDialog2.show();
-                        notification("Thanks for your order!", "Your order is being prepared!");
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                notification("Your order has been prepared!", "Enjoy your meal!");
-                            }
-                        }, 10000);
                     }
                 });
 
-                alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                alertDialogBuilder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        return;
+                        CategoriesFragment categoriesFragment = new CategoriesFragment();
+                        fragmentManager = getActivity().getSupportFragmentManager();
+
+                        fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.fragmentPlace, categoriesFragment);
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();
                     }
                 });
 

@@ -6,14 +6,28 @@
     android:background="@drawable/background"
     android:fitsSystemWindows="true"
     tools:context=".activity.RestaurantProductActivity">
-
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:id="@+id/linearProduct"
+         android:orientation="vertical"
+         >
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight=".9"
         android:background="@color/colorPrimaryDark">
-
         <include layout="@layout/restaurant_product_list" />
     </FrameLayout>
 
+         <Button
+             android:id="@+id/homeBtn"
+             android:layout_width="match_parent"
+             android:textSize="10dp"
+             android:layout_height="24dp"
+             android:layout_weight=".01"
+             android:background="@color/colorRed"
+             android:text="HOME" />
+    </LinearLayout>
 </RelativeLayout>

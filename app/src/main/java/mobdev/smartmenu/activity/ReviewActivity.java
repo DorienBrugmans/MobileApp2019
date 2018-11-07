@@ -28,101 +28,102 @@ public class ReviewActivity extends AppCompatActivity {
     Button reviewButton;
     FirebaseDatabase database;
     DatabaseReference review;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
         database = FirebaseDatabase.getInstance();
         review = database.getReference("Review");
-        checkBox1=(CheckBox)findViewById(R.id.checkbox1);
-        checkBox3=(CheckBox)findViewById(R.id.checkbox3);
-        checkBox5=(CheckBox)findViewById(R.id.checkbox5);
-        checkBox7=(CheckBox)findViewById(R.id.checkbox7);
-        checkBox9=(CheckBox)findViewById(R.id.checkbox9);
-        checkBox10=(CheckBox)findViewById(R.id.checkbox10);
-        comment=(EditText)findViewById(R.id.reviewComment);
-        reviewButton=(Button) findViewById(R.id.reviewButton);
+        checkBox1 = (CheckBox) findViewById(R.id.checkbox1);
+        checkBox3 = (CheckBox) findViewById(R.id.checkbox3);
+        checkBox5 = (CheckBox) findViewById(R.id.checkbox5);
+        checkBox7 = (CheckBox) findViewById(R.id.checkbox7);
+        checkBox9 = (CheckBox) findViewById(R.id.checkbox9);
+        checkBox10 = (CheckBox) findViewById(R.id.checkbox10);
+        comment = (EditText) findViewById(R.id.reviewComment);
+        reviewButton = (Button) findViewById(R.id.reviewButton);
 
         reviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-                String value = "Review" + review.push().getKey().substring(review.push().getKey().length()-10,review.push().getKey().length()-1);
+                String value = "Review" + review.push().getKey().substring(review.push().getKey().length() - 10, review.push().getKey().length() - 1);
                 review.child(value).child("reviewer").setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
                 review.child(value).child("tableId").setValue(sharedPreferences.getString("tafelID", ""));
                 review.child(value).child("rating").setValue(checkBox.getText().toString());
                 review.child(value).child("comment").setValue(comment.getText().toString());
-                Toast.makeText(ReviewActivity.this,"Thanks for your review",Toast.LENGTH_LONG).show();
-                startActivity(new Intent(ReviewActivity.this,MasterActivity.class));
+                Toast.makeText(ReviewActivity.this, "Thanks for your review", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(ReviewActivity.this, MasterActivity.class));
             }
         });
 
     }
 
     public void onCheckboxClicked(View view) {
-            switch(view.getId()) {
+        switch (view.getId()) {
 
-                case R.id.checkbox1:
+            case R.id.checkbox1:
 
-                    checkBox3.setChecked(false);
-                    checkBox5.setChecked(false);
-                    checkBox7.setChecked(false);
-                    checkBox9.setChecked(false);
-                    checkBox10.setChecked(false);
-                    checkBox=checkBox1;
-                    break;
+                checkBox3.setChecked(false);
+                checkBox5.setChecked(false);
+                checkBox7.setChecked(false);
+                checkBox9.setChecked(false);
+                checkBox10.setChecked(false);
+                checkBox = checkBox1;
+                break;
 
-                case R.id.checkbox3:
+            case R.id.checkbox3:
 
-                    checkBox1.setChecked(false);
-                    checkBox5.setChecked(false);
-                    checkBox7.setChecked(false);
-                    checkBox9.setChecked(false);
-                    checkBox10.setChecked(false);
-                    checkBox=checkBox3;
+                checkBox1.setChecked(false);
+                checkBox5.setChecked(false);
+                checkBox7.setChecked(false);
+                checkBox9.setChecked(false);
+                checkBox10.setChecked(false);
+                checkBox = checkBox3;
 
-                    break;
-                case R.id.checkbox5:
+                break;
+            case R.id.checkbox5:
 
-                    checkBox3.setChecked(false);
-                    checkBox1.setChecked(false);
-                    checkBox7.setChecked(false);
-                    checkBox9.setChecked(false);
-                    checkBox10.setChecked(false);
-                    checkBox=checkBox5;
+                checkBox3.setChecked(false);
+                checkBox1.setChecked(false);
+                checkBox7.setChecked(false);
+                checkBox9.setChecked(false);
+                checkBox10.setChecked(false);
+                checkBox = checkBox5;
 
-                    break;
+                break;
 
-                case R.id.checkbox7:
+            case R.id.checkbox7:
 
-                    checkBox3.setChecked(false);
-                    checkBox5.setChecked(false);
-                    checkBox1.setChecked(false);
-                    checkBox9.setChecked(false);
-                    checkBox10.setChecked(false);
-                    checkBox=checkBox7;
+                checkBox3.setChecked(false);
+                checkBox5.setChecked(false);
+                checkBox1.setChecked(false);
+                checkBox9.setChecked(false);
+                checkBox10.setChecked(false);
+                checkBox = checkBox7;
 
-                    break;
+                break;
 
-                case R.id.checkbox9:
+            case R.id.checkbox9:
 
-                    checkBox3.setChecked(false);
-                    checkBox5.setChecked(false);
-                    checkBox7.setChecked(false);
-                    checkBox1.setChecked(false);
-                    checkBox10.setChecked(false);
-                    checkBox=checkBox9;
+                checkBox3.setChecked(false);
+                checkBox5.setChecked(false);
+                checkBox7.setChecked(false);
+                checkBox1.setChecked(false);
+                checkBox10.setChecked(false);
+                checkBox = checkBox9;
 
-                    break;
-                case R.id.checkbox10:
-                    checkBox3.setChecked(false);
-                    checkBox5.setChecked(false);
-                    checkBox7.setChecked(false);
-                    checkBox9.setChecked(false);
-                    checkBox1.setChecked(false);
-                    checkBox=checkBox10;
-                    break;
-            }
-            }
+                break;
+            case R.id.checkbox10:
+                checkBox3.setChecked(false);
+                checkBox5.setChecked(false);
+                checkBox7.setChecked(false);
+                checkBox9.setChecked(false);
+                checkBox1.setChecked(false);
+                checkBox = checkBox10;
+                break;
+        }
+    }
 }
 

@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
             break;
         }
     }
-
+    //save table id in sharedpreferences
     public void saveData(String tafelId) {
         SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();

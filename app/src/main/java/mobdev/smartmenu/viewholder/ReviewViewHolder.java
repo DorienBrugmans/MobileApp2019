@@ -19,9 +19,9 @@ public class ReviewViewHolder extends RecyclerView.ViewHolder implements View.On
     private ItemClickListener itemClickListener;
 
 
-    public ReviewViewHolder(View itemView){
+    public ReviewViewHolder(View itemView) {
         super(itemView);
-        reviewer = (TextView)itemView.findViewById(R.id.reviewer);
+        reviewer = (TextView) itemView.findViewById(R.id.reviewer);
         rating = (TextView) itemView.findViewById(R.id.reviewRating);
         tableId = (TextView) itemView.findViewById(R.id.reviewTableId);
         reviewComment = (TextView) itemView.findViewById(R.id.reviewComment);
@@ -36,6 +36,6 @@ public class ReviewViewHolder extends RecyclerView.ViewHolder implements View.On
 
     @Override
     public void onClick(View view) {
-        itemClickListener.onClick(view,getAdapterPosition(),false);
+        itemClickListener.onClick(view, getAdapterPosition(), false);
     }
 }
