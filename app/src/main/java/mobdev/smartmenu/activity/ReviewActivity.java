@@ -51,14 +51,19 @@ public class ReviewActivity extends AppCompatActivity {
         reviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-                String value = "Review" + review.push().getKey().substring(review.push().getKey().length() - 10, review.push().getKey().length() - 1);
-                review.child(value).child("reviewer").setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
-                review.child(value).child("tableId").setValue(sharedPreferences.getString("tafelID", ""));
-                review.child(value).child("rating").setValue(checkBox.getText().toString());
-                review.child(value).child("comment").setValue(comment.getText().toString());
-                Toast.makeText(ReviewActivity.this, "Thanks for your review", Toast.LENGTH_LONG).show();
-                startActivity(new Intent(ReviewActivity.this, MasterActivity.class));
+                //checking if a checkbox is selected and comment field is not empty
+                if (checkBox!=null&&!comment.getText().toString().equals("")) {
+                    SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+                    String value = "Review" + review.push().getKey().substring(review.push().getKey().length() - 10, review.push().getKey().length() - 1);
+                    review.child(value).child("reviewer").setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+                    review.child(value).child("tableId").setValue(sharedPreferences.getString("tafelID", ""));
+                    review.child(value).child("rating").setValue(checkBox.getText().toString());
+                    review.child(value).child("comment").setValue(comment.getText().toString());
+                    Toast.makeText(ReviewActivity.this, "Thanks for your review", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(ReviewActivity.this, MasterActivity.class));
+                }else{
+                    Toast.makeText(ReviewActivity.this, "Please select a value and enter a comment...", Toast.LENGTH_LONG).show();
+                }
             }
         });
 

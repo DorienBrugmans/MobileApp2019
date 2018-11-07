@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,6 +36,7 @@ public class MasterActivity extends AppCompatActivity {
     FragmentTransaction fragmentTransaction;
     public static List<CartItem> cart;
     Button btnCart, btnCategorie, btnLogOut;
+    ImageView homeImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,14 @@ public class MasterActivity extends AppCompatActivity {
         btnCart = (Button) findViewById(R.id.btnCart);
         btnCategorie = (Button) findViewById(R.id.btnCategorie);
         btnLogOut = (Button) findViewById(R.id.btnLogOut);
+        homeImage = (ImageView) findViewById(R.id.imageView2);
+
+        homeImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MasterActivity.this, MainActivity.class));
+            }
+        });
 
         btnCart.setOnClickListener(new View.OnClickListener() {
             @Override
