@@ -29,10 +29,11 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center">
-       <TextView
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:text="Review"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Review" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -46,7 +47,6 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="34dp"
             android:gravity="center_horizontal"
             android:checkedButton="1"
             >
@@ -64,13 +64,6 @@
             android:id="@+id/checkbox3"
             android:onClick="onCheckboxClicked"
             android:text="2"/>
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="5"
-            android:onClick="onCheckboxClicked"
-            android:id="@+id/checkbox5"
-            android:layout_weight="1"/>
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -111,7 +104,7 @@
         android:gravity="center">
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:id="@+id/reviewComment"
             android:hint="Please place your comment..."/>
     </LinearLayout>
