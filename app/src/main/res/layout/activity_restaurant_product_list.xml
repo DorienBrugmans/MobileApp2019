@@ -29,7 +29,7 @@
             android:layout_height="24dp"
             android:layout_weight=".01"
             android:background="@color/colorRed"
-            android:text="HOME"
+            android:text="@string/home"
             android:textSize="10dp" />
 
     </LinearLayout>

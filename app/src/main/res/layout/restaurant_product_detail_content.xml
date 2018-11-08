@@ -115,7 +115,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
             android:background="@color/colorRed"
-            android:text="DELETE" />
+            android:text="@string/delete" />
 
         <Button
             android:id="@+id/product_edit"
@@ -124,7 +124,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:background="@color/colorRed"
-            android:text="UPDATE" />
+            android:text="@string/update" />
 
     </LinearLayout>
 

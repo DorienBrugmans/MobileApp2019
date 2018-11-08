@@ -30,7 +30,7 @@
             android:layout_alignTop="@+id/imageView"
             android:layout_alignEnd="@+id/camera"
             android:background="@color/colorRed"
-            android:text="VIP"
+            android:text="@string/vip"
             android:textColor="@color/colorWhite" />
 
         <Button
@@ -40,7 +40,7 @@
             android:layout_alignStart="@+id/btn_next"
             android:layout_alignBottom="@+id/imageView"
             android:background="@color/colorRed"
-            android:text="PRODUCTS"
+            android:text="@string/products"
             android:textColor="@color/colorWhite"
             android:visibility="invisible" />
 
@@ -51,7 +51,7 @@
             android:layout_alignStart="@+id/btn_nextLocal"
             android:layout_alignTop="@+id/btn_products"
             android:background="@color/colorRed"
-            android:text="REVIEWS"
+            android:text="@string/reviews"
             android:textColor="@color/colorWhite"
             android:visibility="invisible" />
 

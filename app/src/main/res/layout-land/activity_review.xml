@@ -114,7 +114,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Comment" />
+                    android:text="@string/comment" />
 
             </LinearLayout>
 
@@ -128,7 +128,7 @@
                     android:id="@+id/reviewComment"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:hint="Please place your comment..." />
+                    android:hint="@string/commentHint" />
 
             </LinearLayout>
 
@@ -143,7 +143,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorRed"
-                    android:hint="COMMENT"
+                    android:hint="@string/comment2"
                     android:textColor="@color/colorWhite" />
 
             </LinearLayout>

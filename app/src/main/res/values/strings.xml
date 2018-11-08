@@ -1,5 +1,17 @@
 <resources>
+    <string name="vip">VIP</string>
+    <string name="products">PRODUCTS</string>
+    <string name="reviews">REVIEWS</string>
+    <string name="review">Review</string>
+    <string name="comment">Comment</string>
+    <string name="comment2">COMMENT</string>
+    <string name="update">UPDATE</string>
+    <string name="delete">DELETE</string>
+
+    <string name="commentHint">Please place your comment!</string>
+
     <string name="categories">CATEGORIES</string>
+    <string name="home">HOME</string>
     <string name="cart">CART</string>
     <string name="logout">LOGOUT</string>
     <string name="refresh">REFRESH</string>
