@@ -72,7 +72,6 @@ public class ReviewActivity extends AppCompatActivity {
 
     public void onCheckboxClicked(View view) {
         switch (view.getId()) {
-x
             case R.id.checkbox1:
                 checkBox2.setChecked(false);
                 checkBox3.setChecked(false);
