@@ -16,9 +16,8 @@
             android:id="@+id/productDetailImage"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:layout_marginBottom="30dp"
             android:layout_marginTop="20dp"
-            />
+            android:layout_marginBottom="30dp" />
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -37,6 +36,7 @@
                 android:layout_marginBottom="15dp"
                 android:textColor="@color/colorWhite"
                 android:textColorHint="@color/colorWhite" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -56,6 +56,7 @@
                 android:layout_marginBottom="15dp"
                 android:textColor="@color/colorWhite"
                 android:textColorHint="@color/colorWhite" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -75,6 +76,7 @@
                 android:layout_marginBottom="15dp"
                 android:textColor="@color/colorWhite"
                 android:textColorHint="@color/colorWhite" />
+
         </LinearLayout>
 
         <RelativeLayout
@@ -104,6 +106,7 @@
                 android:layout_marginEnd="30dp"
                 android:background="@color/colorRed"
                 android:text="@string/addCart" />
+
         </RelativeLayout>
 
     </LinearLayout>

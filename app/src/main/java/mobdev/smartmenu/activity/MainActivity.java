@@ -35,18 +35,23 @@ public class MainActivity extends AppCompatActivity {
     TextView txtResult;
     BarcodeDetector barcodeDetector;
     CameraSource cameraSource;
-    final int RequestCameraPermissionID = 1001;
+    final int REQUESTCAMERAPERMISSION = 1001;
 
-    Button btnNext, btnLocal,btnProducts;
+    Button btnNext, btnLocal, btnProducts, btnReview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         btnNext = (Button) findViewById(R.id.btn_next);
         btnLocal = (Button) findViewById(R.id.btn_nextLocal);
         btnProducts = (Button) findViewById(R.id.btn_products);
+        btnReview = (Button) findViewById(R.id.btn_review);
+
         SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+
+        // if previous table exists => show button
         if (!sharedPreferences.getString("tafelID", "0").substring(0, 1).contains("0")) {
             String text = sharedPreferences.getString("tafelID", "Table1");
             btnLocal.setText(text);
@@ -59,7 +64,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-        if (FirebaseAuth.getInstance().getCurrentUser().getEmail().equals("admin@hotmail.com")){
+
+        // check if user is admin
+        if (FirebaseAuth.getInstance().getCurrentUser().getEmail().equals("admin@hotmail.com")) {
             btnProducts.setVisibility(View.VISIBLE);
             btnProducts.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -68,6 +75,19 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
+        // check if user is admin
+        if (FirebaseAuth.getInstance().getCurrentUser().getEmail().equals("admin@hotmail.com")) {
+            btnReview.setVisibility(View.VISIBLE);
+            btnReview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(MainActivity.this, ReviewsActivity.class));
+                }
+            });
+        }
+
+        // vip table
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
                 if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, RequestCameraPermissionID);
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, REQUESTCAMERAPERMISSION);
                     return;
                 }
 
@@ -141,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
-            case RequestCameraPermissionID: {
+            case REQUESTCAMERAPERMISSION: {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                         return;
@@ -158,6 +178,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // save table id in sharedpreferences
     public void saveData(String tafelId) {
         SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();

@@ -19,9 +19,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
         super(itemView);
         product_image=(ImageView)itemView.findViewById(R.id.productImage);
         product_name=(TextView)itemView.findViewById(R.id.productName);
-
         product_progress = (ProgressBar) itemView.findViewById(R.id.categoryProgress);
-
         product_progress.setVisibility(View.VISIBLE);
 
         itemView.setOnClickListener(this);

@@ -24,6 +24,7 @@ public class NoInternetActivity extends AppCompatActivity {
 
         btnRefresh = (Button) findViewById(R.id.btnRefresh);
 
+        // refresh button to check if user is connected to the internet
         btnRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

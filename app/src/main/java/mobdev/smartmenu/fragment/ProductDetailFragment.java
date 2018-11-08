@@ -1,7 +1,6 @@
 package mobdev.smartmenu.fragment;
 
 
-import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -29,10 +27,6 @@ import mobdev.smartmenu.viewholder.ProductDetailViewHolder;
 import model.CartItem;
 import model.Food;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class ProductDetailFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     RecyclerView productDetail;
@@ -42,10 +36,10 @@ public class ProductDetailFragment extends Fragment implements AdapterView.OnIte
     LinearLayoutManager layoutManager;
     View view;
     String productId = "";
-    EditText count;
 
     public static ProductDetailFragment newInstance() {
         ProductDetailFragment productDetailFragment = new ProductDetailFragment();
+
         return productDetailFragment;
     }
 
@@ -57,12 +51,13 @@ public class ProductDetailFragment extends Fragment implements AdapterView.OnIte
     }
 
     public ProductDetailFragment() {
-        // Required empty public constructor
     }
 
+    // after orientation change => stay at the current fragment
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.detach(this).attach(this).commit();
     }
@@ -85,6 +80,7 @@ public class ProductDetailFragment extends Fragment implements AdapterView.OnIte
         return view;
     }
 
+    // load product
     private void loadProduct() {
         adapter = new FirebaseRecyclerAdapter<Food, ProductDetailViewHolder>(Food.class, R.layout.product_detail_layout, ProductDetailViewHolder.class, product.orderByKey().equalTo(productId)) {
             @Override
@@ -96,13 +92,13 @@ public class ProductDetailFragment extends Fragment implements AdapterView.OnIte
                 viewHolder.cartBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (!viewHolder.product_count.getText().toString().equals("0")){
-                            if (!TextUtils.isEmpty(viewHolder.product_count.getText())){
-                                if (MasterActivity.cart.stream().filter(p->p.getProduct().equals(model)).findFirst().isPresent()){
-                                    Toast.makeText(getActivity(), "You already added this item to cart", Toast.LENGTH_SHORT).show();
-                                }else{
+                        if (!viewHolder.product_count.getText().toString().equals("0")) {
+                            if (!TextUtils.isEmpty(viewHolder.product_count.getText())) {
+                                if (MasterActivity.cart.stream().filter(p -> p.getProduct().equals(model)).findFirst().isPresent()) {
+                                    Toast.makeText(getActivity(), "You already added this item to cart!", Toast.LENGTH_SHORT).show();
+                                } else {
                                     MasterActivity.cart.add(new CartItem(model, viewHolder.product_count.getText().toString()));
-                                    Toast.makeText(getActivity(), viewHolder.product_count.getText().toString() + " x " + viewHolder.product_name.getText().toString() + " added to cart..", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), viewHolder.product_count.getText().toString() + " x " + viewHolder.product_name.getText().toString() + " added to cart!", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         }
@@ -111,7 +107,6 @@ public class ProductDetailFragment extends Fragment implements AdapterView.OnIte
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-
                     }
                 });
             }
@@ -121,9 +116,7 @@ public class ProductDetailFragment extends Fragment implements AdapterView.OnIte
         productDetail.setAdapter(adapter);
     }
 
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
     }
 }

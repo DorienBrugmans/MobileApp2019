@@ -24,10 +24,6 @@ import mobdev.smartmenu.R;
 import mobdev.smartmenu.viewholder.ProductViewHolder;
 import model.Food;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class ProductsFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     FragmentManager fragmentManager;
@@ -42,6 +38,7 @@ public class ProductsFragment extends Fragment implements AdapterView.OnItemClic
 
     public static ProductsFragment newInstance() {
         ProductsFragment productsFragment = new ProductsFragment();
+
         return productsFragment;
     }
 
@@ -53,7 +50,6 @@ public class ProductsFragment extends Fragment implements AdapterView.OnItemClic
     }
 
     public ProductsFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -68,11 +64,13 @@ public class ProductsFragment extends Fragment implements AdapterView.OnItemClic
         listProducts.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(container.getContext());
         listProducts.setLayoutManager(layoutManager);
+
         loadProducts();
 
         return view;
     }
 
+    // load products
     private void loadProducts() {
         adapter = new FirebaseRecyclerAdapter<Food, ProductViewHolder>(Food.class, R.layout.productview_item_layout, ProductViewHolder.class, products.orderByChild("categoryId").equalTo(categoryId)) {
             @Override
@@ -86,7 +84,6 @@ public class ProductsFragment extends Fragment implements AdapterView.OnItemClic
 
                     @Override
                     public void onError() {
-
                     }
                 });
 
@@ -116,6 +113,5 @@ public class ProductsFragment extends Fragment implements AdapterView.OnItemClic
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
     }
 }

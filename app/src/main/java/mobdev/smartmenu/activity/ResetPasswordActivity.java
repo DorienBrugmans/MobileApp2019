@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import mobdev.smartmenu.R;
 
 public class ResetPasswordActivity extends AppCompatActivity {
+
     private EditText inputEmail;
     private Button btnReset, btnBack;
     private FirebaseAuth auth;
@@ -26,13 +27,14 @@ public class ResetPasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
+
         inputEmail = (EditText) findViewById(R.id.email);
         btnReset = (Button) findViewById(R.id.btn_reset_password);
         btnBack = (Button) findViewById(R.id.btn_back);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
         auth = FirebaseAuth.getInstance();
 
+        // back button
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,13 +42,14 @@ public class ResetPasswordActivity extends AppCompatActivity {
             }
         });
 
+        // reset password button
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email = inputEmail.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplication(), "Enter your registered email id", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplication(), "Enter your registered E-mail!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 

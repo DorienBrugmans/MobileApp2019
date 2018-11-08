@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import mobdev.smartmenu.R;
 
 public class AccountLoginActivity extends AppCompatActivity {
+
     private EditText inputEmail, inputPassword;
     private FirebaseAuth auth;
     private ProgressBar progressBar;
@@ -44,6 +45,7 @@ public class AccountLoginActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
+        // user password reset
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,6 +53,7 @@ public class AccountLoginActivity extends AppCompatActivity {
             }
         });
 
+        // user login
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

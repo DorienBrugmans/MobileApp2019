@@ -7,6 +7,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -34,14 +35,13 @@ import java.util.List;
 
 import mobdev.smartmenu.CartAdapter;
 import mobdev.smartmenu.R;
+import mobdev.smartmenu.activity.MainActivity;
 import mobdev.smartmenu.activity.MasterActivity;
+import mobdev.smartmenu.activity.ReviewActivity;
 import model.CartItem;
 
 import static android.content.Context.MODE_PRIVATE;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class CartFragment extends Fragment {
 
     public static List<CartItem> cart;
@@ -56,7 +56,6 @@ public class CartFragment extends Fragment {
     public static TextView price;
 
     public CartFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -82,32 +81,49 @@ public class CartFragment extends Fragment {
         orderbtn = (Button) myFragment.findViewById(R.id.orderBtn);
         price = (TextView) myFragment.findViewById(R.id.orderPrice);
 
+        // order button
         orderbtn.setOnClickListener(v -> {
-
             if (cart.size() == 0) {
                 Toast.makeText(getActivity(), "You have nothing in your shopping cart to place an order, please place an order!", Toast.LENGTH_SHORT).show();
             } else {
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+
+                String value = "Order" + products.push().getKey();
+                products.child(value).child("item").setValue(MasterActivity.cart);
+
+                products.child(value).child("tableId").setValue(sharedPreferences.getString("tafelID", ""));
+
+                MasterActivity.cart.clear();
+
+                SumPrice();
+                // send a push notification to thank
+                notification("Thanks for your order!", "Your order is being prepared!");
+                // send a push notification when order has been prepared
+                Handler handler = new Handler();
+
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        notification("Your order has been prepared!", "Enjoy your meal!");
+                    }
+                }, 10000);
+
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
                 alertDialogBuilder.setTitle("SmartMenu");
                 alertDialogBuilder.setIcon(R.drawable.logo);
-                alertDialogBuilder.setMessage("Are you sure?");
+                alertDialogBuilder.setMessage("Thanks for your order, would you write a review?");
                 alertDialogBuilder.setCancelable(true);
 
-                alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-
+                alertDialogBuilder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+                        startActivity(new Intent(getActivity(), ReviewActivity.class));
+                    }
+                });
 
-                        String value = "Order" + products.push().getKey();
-                        products.child(value).child("item").setValue(MasterActivity.cart);
-
-                        products.child(value).child("tableId").setValue(sharedPreferences.getString("tafelID", ""));
-
-                        MasterActivity.cart.clear();
-
-                        SumPrice();
-
+                alertDialogBuilder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
                         CategoriesFragment categoriesFragment = new CategoriesFragment();
                         fragmentManager = getActivity().getSupportFragmentManager();
 
@@ -115,22 +131,6 @@ public class CartFragment extends Fragment {
                         fragmentTransaction.replace(R.id.fragmentPlace, categoriesFragment);
                         fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.commit();
-
-                        notification("Thanks for your order!", "Your order is being prepared!");
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                notification("Your order has been prepared!", "Enjoy your meal!");
-                            }
-                        }, 10000);
-                    }
-                });
-
-                alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        return;
                     }
                 });
 
