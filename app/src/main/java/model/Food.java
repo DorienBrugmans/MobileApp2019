@@ -74,7 +74,9 @@ public class Food {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Food food = (Food) o;
+
         return Objects.equals(name, food.name) &&
                 Objects.equals(image, food.image) &&
                 Objects.equals(description, food.description) &&
@@ -85,7 +87,6 @@ public class Food {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(name, image, description, price, discount, categoryId);
     }
 }

@@ -21,6 +21,7 @@ public class ProductDetailViewHolder extends RecyclerView.ViewHolder implements 
 
     public ProductDetailViewHolder(View itemView){
         super(itemView);
+
         product_image=(ImageView)itemView.findViewById(R.id.productDetailImage);
         product_name=(TextView)itemView.findViewById(R.id.productDetailName);
         product_description=(TextView)itemView.findViewById(R.id.productDetailDescription);

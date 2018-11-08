@@ -23,43 +23,40 @@ import mobdev.smartmenu.R;
 import mobdev.smartmenu.viewholder.CategoryViewHolder;
 import model.Category;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class CategoriesFragment extends Fragment {
 
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
     View myFragment;
     RecyclerView listCategory;
-    FirebaseRecyclerAdapter<Category,CategoryViewHolder> adapter;
+    FirebaseRecyclerAdapter<Category, CategoryViewHolder> adapter;
     FirebaseDatabase database;
     DatabaseReference categories;
     LinearLayoutManager layoutManager;
 
-    public static CategoriesFragment newInstance(){
-        CategoriesFragment categoryFragment=new CategoriesFragment();
+    public static CategoriesFragment newInstance() {
+        CategoriesFragment categoryFragment = new CategoriesFragment();
+
         return categoryFragment;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        database=FirebaseDatabase.getInstance();
-        categories=database.getReference("Category");
+        database = FirebaseDatabase.getInstance();
+        categories = database.getReference("Category");
     }
 
     public CategoriesFragment() {
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        myFragment=inflater.inflate(R.layout.fragment_categories,container,false);
-        listCategory=(RecyclerView)myFragment.findViewById(R.id.listCategory);
+        myFragment = inflater.inflate(R.layout.fragment_categories, container, false);
+        listCategory = (RecyclerView) myFragment.findViewById(R.id.listCategory);
         listCategory.setHasFixedSize(true);
-        layoutManager=new LinearLayoutManager(container.getContext());
+        layoutManager = new LinearLayoutManager(container.getContext());
         listCategory.setLayoutManager(layoutManager);
 
         loadCategories();
@@ -67,8 +64,9 @@ public class CategoriesFragment extends Fragment {
         return myFragment;
     }
 
+    // load categories
     private void loadCategories() {
-        adapter=new FirebaseRecyclerAdapter<Category, CategoryViewHolder>(Category.class,R.layout.listview_item_layout,CategoryViewHolder.class,categories) {
+        adapter = new FirebaseRecyclerAdapter<Category, CategoryViewHolder>(Category.class, R.layout.listview_item_layout, CategoryViewHolder.class, categories) {
             @Override
             protected void populateViewHolder(CategoryViewHolder viewHolder, final Category model, int position) {
                 Picasso.with(getActivity()).load(model.getImage()).into(viewHolder.category_image, new Callback() {
@@ -80,7 +78,6 @@ public class CategoriesFragment extends Fragment {
 
                     @Override
                     public void onError() {
-
                     }
                 });
 

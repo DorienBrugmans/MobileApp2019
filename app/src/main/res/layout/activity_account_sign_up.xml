@@ -19,8 +19,8 @@
             android:layout_height="@dimen/logo_w_h"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp"
-            android:src="@drawable/logo"
             android:contentDescription=""
+            android:src="@drawable/logo"
             tools:ignore="ContentDescription" />
 
         <EditText
@@ -73,14 +73,11 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:visibility="gone"
             android:layout_gravity="center"
             android:indeterminate="true"
             android:indeterminateDrawable="@drawable/my_progress_indeterminate"
-            tools:ignore="MissingConstraints"
-            />
+            android:visibility="gone"
+            tools:ignore="MissingConstraints" />
     </LinearLayout>
-
-
 
 </android.support.constraint.ConstraintLayout>

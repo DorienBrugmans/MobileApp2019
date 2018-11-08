@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import mobdev.smartmenu.R;
 
 public class Splashscreen extends Activity {
+
     Thread splashTread;
     ImageView imageView;
     Animation anim;
@@ -56,6 +57,7 @@ public class Splashscreen extends Activity {
 
             }
         };
+
         splashTread.start();
     }
 

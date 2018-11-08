@@ -42,9 +42,6 @@ import model.CartItem;
 
 import static android.content.Context.MODE_PRIVATE;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class CartFragment extends Fragment {
 
     public static List<CartItem> cart;
@@ -59,7 +56,6 @@ public class CartFragment extends Fragment {
     public static TextView price;
 
     public CartFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -85,8 +81,8 @@ public class CartFragment extends Fragment {
         orderbtn = (Button) myFragment.findViewById(R.id.orderBtn);
         price = (TextView) myFragment.findViewById(R.id.orderPrice);
 
+        // order button
         orderbtn.setOnClickListener(v -> {
-
             if (cart.size() == 0) {
                 Toast.makeText(getActivity(), "You have nothing in your shopping cart to place an order, please place an order!", Toast.LENGTH_SHORT).show();
             } else {
@@ -100,29 +96,28 @@ public class CartFragment extends Fragment {
                 MasterActivity.cart.clear();
 
                 SumPrice();
-                //send a push notification to thank
+                // send a push notification to thank
                 notification("Thanks for your order!", "Your order is being prepared!");
-                //send a push notification when order has been prepared
+                // send a push notification when order has been prepared
                 Handler handler = new Handler();
+
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         notification("Your order has been prepared!", "Enjoy your meal!");
                     }
                 }, 10000);
+
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
                 alertDialogBuilder.setTitle("SmartMenu");
                 alertDialogBuilder.setIcon(R.drawable.logo);
                 alertDialogBuilder.setMessage("Thanks for your order, would you write a review?");
                 alertDialogBuilder.setCancelable(true);
 
-                alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-
+                alertDialogBuilder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-
                         startActivity(new Intent(getActivity(), ReviewActivity.class));
-
                     }
                 });
 

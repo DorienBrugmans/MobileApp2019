@@ -6,8 +6,8 @@
     tools:context=".fragment.ProductDetailFragment">
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/layoutProductDetail"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/layoutProductDetail" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>

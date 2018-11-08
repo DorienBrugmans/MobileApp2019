@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -23,11 +22,14 @@ import mobdev.smartmenu.fragment.CartFragment;
 import model.CartItem;
 
 public class CartAdapter extends RecyclerView.Adapter {
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_cart_layout, parent, false);
+
         sumPrice(MasterActivity.cart);
+
         return new CartViewHolder(view);
     }
 
@@ -42,7 +44,6 @@ public class CartAdapter extends RecyclerView.Adapter {
     }
 
     private class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
         public ImageView cart_product_image;
         public TextView cart_product_name;
         public Button cart_count_min;
@@ -50,13 +51,12 @@ public class CartAdapter extends RecyclerView.Adapter {
         public TextView cart_count;
         public ImageButton cart_delete;
         public RelativeLayout cart_layout;
-
         public Button btnOrder;
-
         private ItemClickListener itemClickListener;
 
         public CartViewHolder(View itemView) {
             super(itemView);
+
             cart_product_image = (ImageView) itemView.findViewById(R.id.productCartImage);
             cart_product_name = (TextView) itemView.findViewById(R.id.productCartName);
             cart_count_min = (Button) itemView.findViewById(R.id.minCount);
@@ -75,6 +75,7 @@ public class CartAdapter extends RecyclerView.Adapter {
             cart_product_name.setText(MasterActivity.cart.get(position).getProduct().getName());
             Picasso.with(itemView.getContext()).load(MasterActivity.cart.get(position).getProduct().getImage()).into(cart_product_image);
 
+            // count plus button
             cart_count_plus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -86,6 +87,7 @@ public class CartAdapter extends RecyclerView.Adapter {
                 }
             });
 
+            // count min button
             cart_count_min.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -101,6 +103,7 @@ public class CartAdapter extends RecyclerView.Adapter {
                 }
             });
 
+            // delete product on cart
             cart_delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -133,6 +136,7 @@ public class CartAdapter extends RecyclerView.Adapter {
                 CartFragment.price.setText("€ " + new DecimalFormat("##.##").format(valueAnimator.getAnimatedValue()).toString());
             }
         });
+
         valueAnimator.start();
     }
 }

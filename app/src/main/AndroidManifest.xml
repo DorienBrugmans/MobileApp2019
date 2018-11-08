@@ -52,7 +52,7 @@
                 android:value=".activity.RestaurantProductActivity" />
         </activity>
         <activity android:name=".activity.ReviewActivity" />
-        <activity android:name=".activity.GetReviewActivity"></activity>
+        <activity android:name=".activity.ReviewsActivity"></activity>
     </application>
 
 </manifest>

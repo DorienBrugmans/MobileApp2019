@@ -27,7 +27,6 @@ import model.Food;
 public class RestaurantProductActivity extends AppCompatActivity {
 
     private boolean mTwoPane;
-
     public FirebaseRecyclerAdapter<Food, RestaurantProductViewHolder> adapter;
     public FirebaseDatabase database;
     public DatabaseReference products;
@@ -36,6 +35,7 @@ public class RestaurantProductActivity extends AppCompatActivity {
     public android.support.v7.widget.RecyclerView recyclerView;
 
     private Button homeBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +43,9 @@ public class RestaurantProductActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         products = database.getReference("Food");
-        homeBtn=(Button)findViewById(R.id.homeBtn);
+        homeBtn = (Button) findViewById(R.id.homeBtn);
 
-        if(findViewById(R.id.restaurant_product_detail_container) != null) {
+        if (findViewById(R.id.restaurant_product_detail_container) != null) {
             mTwoPane = true;
         }
 
@@ -55,23 +55,26 @@ public class RestaurantProductActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         setupRecyclerView((android.support.v7.widget.RecyclerView) recyclerView);
 
+        // hom ebutton
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RestaurantProductActivity.this,MainActivity.class));
+                startActivity(new Intent(RestaurantProductActivity.this, MainActivity.class));
             }
         });
     }
+
     @Override
-    public void onConfigurationChanged(Configuration newConfig)
-    {
+    public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        // check orientation
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            startActivity(new Intent(RestaurantProductActivity.this,RestaurantProductActivity.class));
-        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
-            startActivity(new Intent(RestaurantProductActivity.this,RestaurantProductActivity.class));
+            startActivity(new Intent(RestaurantProductActivity.this, RestaurantProductActivity.class));
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            startActivity(new Intent(RestaurantProductActivity.this, RestaurantProductActivity.class));
         }
     }
+
     private void setupRecyclerView(android.support.v7.widget.RecyclerView recyclerView) {
         adapter = new FirebaseRecyclerAdapter<Food, RestaurantProductViewHolder>(Food.class,
                 R.layout.restaurant_product_list_content, RestaurantProductViewHolder.class, products) {
@@ -93,7 +96,8 @@ public class RestaurantProductActivity extends AppCompatActivity {
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        if(mTwoPane) {
+                        // if landscape
+                        if (mTwoPane) {
                             Bundle arg = new Bundle();
                             arg.putString("restaurant_product_id", adapter.getRef(position).getKey());
                             RestaurantProductDetailFragment fragment = new RestaurantProductDetailFragment();
@@ -105,9 +109,10 @@ public class RestaurantProductActivity extends AppCompatActivity {
                             fragmentTransaction.addToBackStack(null);
                             fragmentTransaction.commit();
                         } else {
+                            // if portrait
                             Context context = view.getContext();
                             Intent intent = new Intent(context, RestaurantProductDetailActivity.class);
-                            intent.putExtra("restaurant_product_id" , adapter.getRef(position).getKey());
+                            intent.putExtra("restaurant_product_id", adapter.getRef(position).getKey());
                             context.startActivity(intent);
                         }
                     }

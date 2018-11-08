@@ -8,8 +8,8 @@ public class Category {
         this.name = name;
         this.image = image;
     }
-    public Category(){
 
+    public Category(){
     }
 
     public String getName() {

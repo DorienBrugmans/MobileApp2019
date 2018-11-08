@@ -1,82 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:layout_marginBottom="10dp"
     android:background="@color/colorPrimaryDark"
-    android:layout_marginBottom="10dp">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:scaleType="fitXY"
         android:gravity="center"
-        android:padding="16dp">
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:scaleType="fitXY">
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_weight=".9"
-                android:layout_height="wrap_content"
-                android:textAlignment="textStart"
                 android:id="@+id/reviewer"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:text="hakanpinar70@hotmail.com"
-                android:textColor="@color/colorWhite"/>
-
-            <TextView
-                android:layout_weight=".1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textAlignment="textEnd"
-                android:layout_centerHorizontal="true"
+                android:layout_weight=".9"
+                android:text="hakanpinar70@hotmail.com"
+                android:textAlignment="textStart"
+                android:textColor="@color/colorWhite"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/reviewRating"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_weight=".1"
                 android:gravity="center"
                 android:text="5"
+                android:textAlignment="textEnd"
+                android:textColor="@color/colorWhite"
                 android:textSize="40dp"
-                android:textStyle="bold"
-                android:textColor="@color/colorWhite"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
 
         <TextView
+            android:id="@+id/reviewComment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="textStart"
-            android:id="@+id/reviewComment"
-            android:textSize="15dp"
             android:scrollbars="vertical"
-            android:textStyle="italic"
-            android:text="tsdfqjsldf kqsdlkf jqsdlkf jqlsmdkfj qmlsdkfj qlsmdkfj qlmsdkfj qsmdkfj qmsdklj fqmdskj fqmskd fjmqsdkfj qmsldkfj qmsdkf jqmsdkfj qmsdext
-            tsdfqjsldf kqsdlkf jqsdlkf jqlsmdkfj qmlsdkfj qlsmdkfj qlmsdkfj qsmdkfj qmsdklj fqmdskj fqmskd fjmqsdkfj qmsldkfj qmsdkf jqmsdkfj qmsdext
-            tsdfqjsldf kqsdlkf jqsdlkf jqlsmdkfj qmlsdkfj qlsmdkfj qlmsdkfj qsmdkfj qmsdklj fqmdskj fqmskd fjmqsdkfj qmsldkfj qmsdkf jqmsdkfj qmsdext
-            tsdfqjsldf kqsdlkf jqsdlkf jqlsmdkfj qmlsdkfj qlsmdkfj qlmsdkfj qsmdkfj qmsdklj fqmdskj fqmskd fjmqsdkfj qmsldkfj qmsdkf jqmsdkfj qmsdext
-            tsdfqjsldf kqsdlkf jqsdlkf jqlsmdkfj qmlsdkfj qlsmdkfj qlmsdkfj qsmdkfj qmsdklj fqmdskj fqmskd fjmqsdkfj qmsldkfj qmsdkf jqmsdkfj qmsdext"
-            android:textColor="@color/colorWhite"/>
-
+            android:text=""
+            android:textAlignment="textStart"
+            android:textColor="@color/colorWhite"
+            android:textSize="15dp"
+            android:textStyle="italic" />
 
         <TextView
+            android:id="@+id/reviewTableId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="textStart"
             android:layout_centerHorizontal="true"
-            android:id="@+id/reviewTableId"
             android:gravity="center"
-            android:textSize="20dp"
             android:text="Table 5"
-            android:textStyle="bold"
-            android:textColor="@color/colorWhite"/>
-
-
-
+            android:textAlignment="textStart"
+            android:textColor="@color/colorWhite"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

@@ -17,9 +17,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import mobdev.smartmenu.R;
 
 public class ReviewActivity extends AppCompatActivity {
+
     CheckBox checkBox1;
     CheckBox checkBox3;
-    CheckBox checkBox5;
     CheckBox checkBox7;
     CheckBox checkBox9;
     CheckBox checkBox10;
@@ -38,31 +38,32 @@ public class ReviewActivity extends AppCompatActivity {
 
         comment = (EditText) findViewById(R.id.reviewComment);
         reviewButton = (Button) findViewById(R.id.reviewButton);
+        checkBox1 = (CheckBox) findViewById(R.id.checkbox1);
+        checkBox3 = (CheckBox) findViewById(R.id.checkbox3);
+        checkBox7 = (CheckBox) findViewById(R.id.checkbox7);
+        checkBox9 = (CheckBox) findViewById(R.id.checkbox9);
+        checkBox10 = (CheckBox) findViewById(R.id.checkbox10);
+        comment = (EditText) findViewById(R.id.reviewComment);
+        reviewButton = (Button) findViewById(R.id.reviewButton);
 
-        checkBox1=(CheckBox)findViewById(R.id.checkbox1);
-        checkBox3=(CheckBox)findViewById(R.id.checkbox3);
-        checkBox7=(CheckBox)findViewById(R.id.checkbox7);
-        checkBox9=(CheckBox)findViewById(R.id.checkbox9);
-        checkBox10=(CheckBox)findViewById(R.id.checkbox10);
-        comment=(EditText)findViewById(R.id.reviewComment);
-        reviewButton=(Button) findViewById(R.id.reviewButton);
-
-
+        // review button
         reviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //checking if a checkbox is selected and comment field is not empty
-                if (checkBox!=null&&!comment.getText().toString().equals("")) {
+                if (checkBox != null && !comment.getText().toString().equals("")) {
                     SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
                     String value = "Review" + review.push().getKey().substring(review.push().getKey().length() - 10, review.push().getKey().length() - 1);
+
                     review.child(value).child("reviewer").setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
                     review.child(value).child("tableId").setValue(sharedPreferences.getString("tafelID", ""));
                     review.child(value).child("rating").setValue(checkBox.getText().toString());
                     review.child(value).child("comment").setValue(comment.getText().toString());
-                    Toast.makeText(ReviewActivity.this, "Thanks for your review", Toast.LENGTH_LONG).show();
+
+                    Toast.makeText(ReviewActivity.this, "Thanks for your review!", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(ReviewActivity.this, MasterActivity.class));
-                }else{
-                    Toast.makeText(ReviewActivity.this, "Please select a value and enter a comment...", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(ReviewActivity.this, "Please select a value and enter a comment!", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -70,7 +71,6 @@ public class ReviewActivity extends AppCompatActivity {
     }
 
     public void onCheckboxClicked(View view) {
-
         switch (view.getId()) {
 
             case R.id.checkbox1:
@@ -81,7 +81,6 @@ public class ReviewActivity extends AppCompatActivity {
                 checkBox10.setChecked(false);
                 checkBox = checkBox1;
                 break;
-
             case R.id.checkbox3:
 
                 checkBox1.setChecked(false);

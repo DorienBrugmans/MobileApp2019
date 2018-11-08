@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import mobdev.smartmenu.R;
 
 public class AccountSignUpActivity extends AppCompatActivity {
+
     private EditText inputEmail, inputPassword;
     private Button btnSignIn, btnSignUp;
     private ProgressBar progressBar;
@@ -36,6 +37,7 @@ public class AccountSignUpActivity extends AppCompatActivity {
         inputPassword = (EditText) findViewById(R.id.password);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
+        // user sign in
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,6 +45,7 @@ public class AccountSignUpActivity extends AppCompatActivity {
             }
         });
 
+        // user sign up
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,10 +73,10 @@ public class AccountSignUpActivity extends AppCompatActivity {
                         .addOnCompleteListener(AccountSignUpActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                Toast.makeText(AccountSignUpActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AccountSignUpActivity.this, "User successfully created!", Toast.LENGTH_SHORT).show();
                                 progressBar.setVisibility(View.GONE);
                                 if (!task.isSuccessful()) {
-                                    Toast.makeText(AccountSignUpActivity.this, "Authentication failed." + task.getException(),
+                                    Toast.makeText(AccountSignUpActivity.this, "Please try again!",
                                             Toast.LENGTH_SHORT).show();
                                 } else {
                                     startActivity(new Intent(AccountSignUpActivity.this, MainActivity.class));

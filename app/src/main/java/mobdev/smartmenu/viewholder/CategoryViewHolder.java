@@ -17,10 +17,10 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder implements View.
 
     public CategoryViewHolder(View itemView) {
         super(itemView);
+
         category_image = (ImageView) itemView.findViewById(R.id.categoryImage);
         category_name = (TextView) itemView.findViewById(R.id.categoryName);
         category_progress = (ProgressBar) itemView.findViewById(R.id.categoryProgress);
-
         category_progress.setVisibility(View.VISIBLE);
 
         itemView.setOnClickListener(this);

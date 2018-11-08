@@ -7,7 +7,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import mobdev.smartmenu.ItemClickListener;
 import mobdev.smartmenu.R;
 
 public class RestaurantProductDetailViewHolder extends RecyclerView.ViewHolder {
@@ -18,10 +17,10 @@ public class RestaurantProductDetailViewHolder extends RecyclerView.ViewHolder {
     public EditText product_price;
     public Button button_edit;
     public Button button_delete;
-    private ItemClickListener itemClickListener;
 
     public RestaurantProductDetailViewHolder(View itemView){
         super(itemView);
+
         product_image=(ImageView) itemView.findViewById(R.id.restaurantProductImage);
         product_name=(EditText) itemView.findViewById(R.id.restaurantProductName);
         product_categoryId=(TextView) itemView.findViewById(R.id.restaurantProductCatId);

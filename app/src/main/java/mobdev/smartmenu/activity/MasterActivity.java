@@ -2,16 +2,11 @@ package mobdev.smartmenu.activity;
 
 
 import android.app.AlertDialog;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Handler;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -49,6 +44,7 @@ public class MasterActivity extends AppCompatActivity {
         btnLogOut = (Button) findViewById(R.id.btnLogOut);
         homeImage = (ImageView) findViewById(R.id.imageView2);
 
+        // home button
         homeImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,6 +52,7 @@ public class MasterActivity extends AppCompatActivity {
             }
         });
 
+        // cart button
         btnCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +68,7 @@ public class MasterActivity extends AppCompatActivity {
         });
 
 
+        // category button
         btnCategorie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,6 +83,7 @@ public class MasterActivity extends AppCompatActivity {
             }
         });
 
+        // log out button
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
