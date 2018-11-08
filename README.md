@@ -1,5 +1,5 @@
-# MobileDevelopmentApp
-SMARTMENU APP
+# SMARTMENU APP
+
 Made by Caglar Celikoz &amp; Hakan Pinar
 
 MINIMALE VEREISTEN
