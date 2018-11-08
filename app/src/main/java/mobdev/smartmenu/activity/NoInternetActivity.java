@@ -31,7 +31,7 @@ public class NoInternetActivity extends AppCompatActivity {
                 ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
                         connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
-                    startActivity(new Intent(NoInternetActivity.this, AccountSignUpActivity.class));
+                    startActivity(new Intent(NoInternetActivity.this, MainActivity.class));
                 } else {
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(NoInternetActivity.this);
                     alertDialogBuilder.setTitle("SmartMenu");

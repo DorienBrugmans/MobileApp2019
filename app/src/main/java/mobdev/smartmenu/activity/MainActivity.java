@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Vibrator;
@@ -60,7 +62,12 @@ public class MainActivity extends AppCompatActivity {
             btnLocal.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(MainActivity.this, MasterActivity.class));
+                    if (checkInternet()) {
+                        startActivity(new Intent(MainActivity.this, MasterActivity.class));
+                    } else {
+                        startActivity(new Intent(MainActivity.this, NoInternetActivity.class));
+                    }
+                   // startActivity(new Intent(MainActivity.this, MasterActivity.class));
                 }
             });
         }
@@ -71,7 +78,12 @@ public class MainActivity extends AppCompatActivity {
             btnProducts.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(MainActivity.this, RestaurantProductActivity.class));
+                    if (checkInternet()) {
+                        startActivity(new Intent(MainActivity.this, RestaurantProductActivity.class));
+                    } else {
+                        startActivity(new Intent(MainActivity.this, NoInternetActivity.class));
+                    }
+                   // startActivity(new Intent(MainActivity.this, RestaurantProductActivity.class));
                 }
             });
         }
@@ -82,7 +94,12 @@ public class MainActivity extends AppCompatActivity {
             btnReview.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(MainActivity.this, ReviewsActivity.class));
+                    if (checkInternet()) {
+                        startActivity(new Intent(MainActivity.this, ReviewsActivity.class));
+                    } else {
+                        startActivity(new Intent(MainActivity.this, NoInternetActivity.class));
+                    }
+                  //  startActivity(new Intent(MainActivity.this, ReviewsActivity.class));
                 }
             });
         }
@@ -91,8 +108,14 @@ public class MainActivity extends AppCompatActivity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveData("VIP");
-                startActivity(new Intent(MainActivity.this, MasterActivity.class));
+                if (checkInternet()) {
+                    saveData("VIP");
+                    startActivity(new Intent(MainActivity.this, MasterActivity.class));
+                } else {
+                    startActivity(new Intent(MainActivity.this, NoInternetActivity.class));
+                }
+              //  saveData("VIP");
+               // startActivity(new Intent(MainActivity.this, MasterActivity.class));
             }
         });
 
@@ -150,7 +173,12 @@ public class MainActivity extends AppCompatActivity {
                             saveData(qrcodes.valueAt(0).displayValue);
                             cameraSource.stop();
                             cameraPreview.setVisibility(View.INVISIBLE);
-                            startActivity(new Intent(MainActivity.this, MasterActivity.class));
+                            if (checkInternet()) {
+                                startActivity(new Intent(MainActivity.this, MasterActivity.class));
+                            } else {
+                                startActivity(new Intent(MainActivity.this, NoInternetActivity.class));
+                            }
+                           // startActivity(new Intent(MainActivity.this, MasterActivity.class));
                         }
                     });
                 }
@@ -185,5 +213,14 @@ public class MainActivity extends AppCompatActivity {
 
         editor.putString("tafelID", tafelId);
         editor.commit();
+    }
+    public boolean checkInternet() {
+        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+            return true;
+        }
+        else
+            return false;
     }
 }

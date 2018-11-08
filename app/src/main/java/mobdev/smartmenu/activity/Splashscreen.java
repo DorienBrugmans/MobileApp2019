@@ -38,12 +38,9 @@ public class Splashscreen extends Activity {
                     }
                     Intent intent;
 
-                    if (checkInternet()) {
+
                         intent = new Intent(Splashscreen.this,
                                 AccountSignUpActivity.class);
-                    } else {
-                        intent = new Intent(Splashscreen.this, NoInternetActivity.class);
-                    }
 
                     intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     startActivity(intent);
@@ -61,13 +58,4 @@ public class Splashscreen extends Activity {
         splashTread.start();
     }
 
-    public boolean checkInternet() {
-        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
-                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
-            return true;
-        }
-        else
-            return false;
-    }
 }
