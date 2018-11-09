@@ -55,6 +55,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
                 }
 
                 progressBar.setVisibility(View.VISIBLE);
+                //if user email exists in firebase, firebase will sent an email with reset instructions
                 auth.sendPasswordResetEmail(email)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
