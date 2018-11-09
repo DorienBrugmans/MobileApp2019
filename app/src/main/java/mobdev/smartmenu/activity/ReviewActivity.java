@@ -55,7 +55,7 @@ public class ReviewActivity extends AppCompatActivity {
                 if (checkBox != null && !comment.getText().toString().equals("")) {
                     SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
                     //create unique id
-                    String value = "Review" + review.push().getKey().substring(review.push().getKey().length() - 10, review.push().getKey().length() - 1);
+                    String value = "Review" + review.push().getKey();
 
                     review.child(value).child("reviewer").setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
                     review.child(value).child("tableId").setValue(sharedPreferences.getString("tafelID", ""));
