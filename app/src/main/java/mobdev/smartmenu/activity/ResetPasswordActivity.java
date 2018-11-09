@@ -1,5 +1,6 @@
 package mobdev.smartmenu.activity;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -60,8 +61,10 @@ public class ResetPasswordActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(ResetPasswordActivity.this, "We have sent you instructions to reset your password!", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(ResetPasswordActivity.this, AccountSignUpActivity.class));
                                 } else {
                                     Toast.makeText(ResetPasswordActivity.this, "Failed to send reset email!", Toast.LENGTH_SHORT).show();
+
                                 }
 
                                 progressBar.setVisibility(View.GONE);
