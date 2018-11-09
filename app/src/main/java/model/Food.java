@@ -2,6 +2,7 @@ package model;
 
 import java.util.Objects;
 
+//model class for Food
 public class Food {
     private String name;
     private String image;

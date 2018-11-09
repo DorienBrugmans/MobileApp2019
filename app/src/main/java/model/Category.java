@@ -1,5 +1,6 @@
 package model;
 
+//model class for category
 public class Category {
     private String name;
     private String image;

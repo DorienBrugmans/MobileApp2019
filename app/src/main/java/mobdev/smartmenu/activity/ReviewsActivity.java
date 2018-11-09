@@ -28,6 +28,7 @@ public class ReviewsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_get_review);
 
         database = FirebaseDatabase.getInstance();
+        //get review table from firebase
         review = database.getReference("Review");
         recyclerView = (android.support.v7.widget.RecyclerView) findViewById(R.id.restaurant_review_list);
         recyclerView.setHasFixedSize(true);

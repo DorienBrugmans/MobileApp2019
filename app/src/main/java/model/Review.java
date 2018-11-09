@@ -1,5 +1,6 @@
 package model;
 
+//model class for review
 public class Review {
     private String comment;
     private String rating;

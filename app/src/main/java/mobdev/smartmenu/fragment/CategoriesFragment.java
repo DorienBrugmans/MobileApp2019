@@ -44,6 +44,7 @@ public class CategoriesFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         database = FirebaseDatabase.getInstance();
+        //get category table from firebase
         categories = database.getReference("Category");
     }
 

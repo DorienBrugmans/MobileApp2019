@@ -34,6 +34,7 @@ public class ReviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
         database = FirebaseDatabase.getInstance();
+        //first time Review table will be created if not exists
         review = database.getReference("Review");
 
         comment = (EditText) findViewById(R.id.reviewComment);
@@ -53,6 +54,7 @@ public class ReviewActivity extends AppCompatActivity {
                 // checking if a checkbox is selected and comment field is not empty
                 if (checkBox != null && !comment.getText().toString().equals("")) {
                     SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+                    //create unique id
                     String value = "Review" + review.push().getKey().substring(review.push().getKey().length() - 10, review.push().getKey().length() - 1);
 
                     review.child(value).child("reviewer").setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
@@ -69,7 +71,7 @@ public class ReviewActivity extends AppCompatActivity {
         });
 
     }
-
+    //method to select only one checkbox
     public void onCheckboxClicked(View view) {
         switch (view.getId()) {
             case R.id.checkbox1:

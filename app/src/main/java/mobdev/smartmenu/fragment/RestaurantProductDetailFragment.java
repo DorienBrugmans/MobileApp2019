@@ -65,7 +65,7 @@ public class RestaurantProductDetailFragment extends Fragment {
 
         return view;
     }
-
+    //get restaurant product activity if orientation changed
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -106,7 +106,7 @@ public class RestaurantProductDetailFragment extends Fragment {
             }
         });
     }
-
+    //update product in firebase
     private void updateProduct(String id, String name, String price, String description, String image, String discount, String categoryId) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Food").child(id);
         Food food = new Food();
@@ -123,7 +123,7 @@ public class RestaurantProductDetailFragment extends Fragment {
 
         Toast.makeText(getContext(), "Product updated successfully!", Toast.LENGTH_LONG).show();
     }
-
+    //delete product from firebse
     private void deleteProduct(String id) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Food").child(id);
         databaseReference.removeValue();

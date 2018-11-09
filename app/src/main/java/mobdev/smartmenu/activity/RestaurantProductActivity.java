@@ -42,6 +42,7 @@ public class RestaurantProductActivity extends AppCompatActivity {
         setContentView(R.layout.activity_restaurant_product_list);
 
         database = FirebaseDatabase.getInstance();
+        //get Food Table from firebase database
         products = database.getReference("Food");
         homeBtn = (Button) findViewById(R.id.homeBtn);
 
@@ -55,7 +56,7 @@ public class RestaurantProductActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         setupRecyclerView((android.support.v7.widget.RecyclerView) recyclerView);
 
-        // hom ebutton
+        // back to home
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +64,7 @@ public class RestaurantProductActivity extends AppCompatActivity {
             }
         });
     }
-
+    //method for checking if orientation changed when app is running
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);

@@ -93,10 +93,10 @@ public class MasterActivity extends AppCompatActivity {
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MasterActivity.this);
                 alertDialogBuilder.setTitle("SmartMenu");
                 alertDialogBuilder.setIcon(R.drawable.logo);
-                alertDialogBuilder.setMessage("Are you sure?");
+                alertDialogBuilder.setMessage("Are you sure you want to log out?");
                 alertDialogBuilder.setCancelable(true);
 
-                alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                alertDialogBuilder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
@@ -130,13 +130,5 @@ public class MasterActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.fragmentPlace, categoriesFragment);
         fragmentTransaction.commit();
     }
-    public boolean checkInternet() {
-        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
-                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
-            return true;
-        }
-        else
-            return false;
-    }
+
 }

@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         startActivity(new Intent(MainActivity.this, NoInternetActivity.class));
                     }
-                   // startActivity(new Intent(MainActivity.this, MasterActivity.class));
+                    // startActivity(new Intent(MainActivity.this, MasterActivity.class));
                 }
             });
         }
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         startActivity(new Intent(MainActivity.this, NoInternetActivity.class));
                     }
-                   // startActivity(new Intent(MainActivity.this, RestaurantProductActivity.class));
+                    // startActivity(new Intent(MainActivity.this, RestaurantProductActivity.class));
                 }
             });
         }
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         startActivity(new Intent(MainActivity.this, NoInternetActivity.class));
                     }
-                  //  startActivity(new Intent(MainActivity.this, ReviewsActivity.class));
+                    //  startActivity(new Intent(MainActivity.this, ReviewsActivity.class));
                 }
             });
         }
@@ -114,8 +114,8 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     startActivity(new Intent(MainActivity.this, NoInternetActivity.class));
                 }
-              //  saveData("VIP");
-               // startActivity(new Intent(MainActivity.this, MasterActivity.class));
+                //  saveData("VIP");
+                // startActivity(new Intent(MainActivity.this, MasterActivity.class));
             }
         });
 
@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
                             } else {
                                 startActivity(new Intent(MainActivity.this, NoInternetActivity.class));
                             }
-                           // startActivity(new Intent(MainActivity.this, MasterActivity.class));
+                            // startActivity(new Intent(MainActivity.this, MasterActivity.class));
                         }
                     });
                 }
@@ -214,13 +214,13 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("tafelID", tafelId);
         editor.commit();
     }
+    //method to check internet connectivity
     public boolean checkInternet() {
-        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
                 connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
             return true;
-        }
-        else
+        } else
             return false;
     }
 }

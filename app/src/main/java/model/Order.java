@@ -2,6 +2,7 @@ package model;
 
 import java.util.List;
 
+//model class for order
 public class Order {
     private String tableId;
     private List<CartItem> foods;

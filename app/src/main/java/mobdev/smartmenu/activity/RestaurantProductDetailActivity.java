@@ -55,7 +55,7 @@ public class RestaurantProductDetailActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         setupRecyclerView((android.support.v7.widget.RecyclerView) recyclerView);
     }
-
+    //method for checking if orientation changed when app is running
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -100,7 +100,7 @@ public class RestaurantProductDetailActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    // update method
+    // update item in firebase
     private void updateProduct(String id, String name, String price, String description, String image, String discount, String categoryId) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Food").child(id);
         Food food = new Food();
@@ -118,7 +118,7 @@ public class RestaurantProductDetailActivity extends AppCompatActivity {
         Toast.makeText(RestaurantProductDetailActivity.this, "Product updated successfully!", Toast.LENGTH_LONG).show();
     }
 
-    // delete method
+    // delete method for deleting item in firebase
     private void deleteProduct(String id) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Food").child(id);
         databaseReference.removeValue();

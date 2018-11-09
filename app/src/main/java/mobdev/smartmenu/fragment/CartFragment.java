@@ -62,6 +62,7 @@ public class CartFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         database = FirebaseDatabase.getInstance();
+        //get Order table from firebase
         products = database.getReference("Order");
         cart = MasterActivity.cart;
     }
@@ -107,7 +108,7 @@ public class CartFragment extends Fragment {
                         notification("Your order has been prepared!", "Enjoy your meal!");
                     }
                 }, 10000);
-
+                //create alertdialog
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
                 alertDialogBuilder.setTitle("SmartMenu");
                 alertDialogBuilder.setIcon(R.drawable.logo);
@@ -161,7 +162,7 @@ public class CartFragment extends Fragment {
 
         valueAnimator.start();
     }
-
+    //method to create notification
     public void notification(String title, String description) {
         final String NOTIFICATION_CHANNEL_ID = "4565";
         String channelName = "personal channel";

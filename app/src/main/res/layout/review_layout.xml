@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
-    android:background="@color/colorPrimaryDark"
+    android:background="@drawable/btn_bg_stroke"
     android:orientation="vertical">
 
     <LinearLayout
