@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import mobdev.smartmenu.R;
-
+//binding product-detail layout for admin
 public class RestaurantProductDetailViewHolder extends RecyclerView.ViewHolder {
     public ImageView product_image;
     public EditText product_name;

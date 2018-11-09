@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import mobdev.smartmenu.ItemClickListener;
 import mobdev.smartmenu.R;
-
+//binding category layout
 public class CategoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public TextView category_name;
     public ImageView category_image;

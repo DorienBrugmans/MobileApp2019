@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import mobdev.smartmenu.ItemClickListener;
 import mobdev.smartmenu.R;
+//binding product layout  for admin
 
 public class RestaurantProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public TextView product_name;

@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import mobdev.smartmenu.ItemClickListener;
 import mobdev.smartmenu.R;
-
+//binding product layout
 public class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public TextView product_name;
     public ImageView product_image;

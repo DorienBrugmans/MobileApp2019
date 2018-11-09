@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import mobdev.smartmenu.ItemClickListener;
 import mobdev.smartmenu.R;
-
+//binding product detail layout
 public class ProductDetailViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public TextView product_name;
     public TextView product_description;

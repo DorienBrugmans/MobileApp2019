@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import mobdev.smartmenu.ItemClickListener;
 import mobdev.smartmenu.R;
+//binding review layout when for admin
 
 public class ReviewViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public TextView reviewer;
