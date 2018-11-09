@@ -48,6 +48,9 @@ public class ReviewsActivity extends AppCompatActivity {
                 viewHolder.reviewComment.setText(model.getComment());
                 viewHolder.tableId.setText(model.getTableId());
                 viewHolder.rating.setText(model.getRating());
+                viewHolder.reviewDate.setText(model.getDate());
+                viewHolder.reviewTime.setText(model.getTime());
+
                 viewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {

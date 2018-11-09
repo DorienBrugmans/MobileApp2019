@@ -14,6 +14,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.time.LocalDateTime;
+import java.util.Random;
+
 import mobdev.smartmenu.R;
 
 public class ReviewActivity extends AppCompatActivity {
@@ -55,12 +58,15 @@ public class ReviewActivity extends AppCompatActivity {
                 if (checkBox != null && !comment.getText().toString().equals("")) {
                     SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
                     //create unique id
-                    String value = "Review" + review.push().getKey();
+                    String value = "Review" + new Random().nextInt()+review.push().getKey().substring(review.push().getKey().length()-7);
 
                     review.child(value).child("reviewer").setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
                     review.child(value).child("tableId").setValue(sharedPreferences.getString("tafelID", ""));
                     review.child(value).child("rating").setValue(checkBox.getText().toString());
                     review.child(value).child("comment").setValue(comment.getText().toString());
+                    review.child(value).child("date").setValue(LocalDateTime.now().getDayOfMonth()+"/"+LocalDateTime.now().getMonthValue()+"/"+LocalDateTime.now().getYear());
+                    review.child(value).child("time").setValue(LocalDateTime.now().getHour()+":"+LocalDateTime.now().getMinute()+":"+LocalDateTime.now().getSecond());
+
 
                     Toast.makeText(ReviewActivity.this, "Thanks for your review!", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(ReviewActivity.this, MasterActivity.class));

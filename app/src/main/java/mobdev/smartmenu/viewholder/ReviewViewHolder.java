@@ -12,6 +12,8 @@ public class ReviewViewHolder extends RecyclerView.ViewHolder implements View.On
     public TextView rating;
     public TextView tableId;
     public TextView reviewComment;
+    public TextView reviewDate;
+    public TextView reviewTime;
 
     private ItemClickListener itemClickListener;
 
@@ -23,6 +25,8 @@ public class ReviewViewHolder extends RecyclerView.ViewHolder implements View.On
         rating = (TextView) itemView.findViewById(R.id.reviewRating);
         tableId = (TextView) itemView.findViewById(R.id.reviewTableId);
         reviewComment = (TextView) itemView.findViewById(R.id.reviewComment);
+        reviewDate = (TextView) itemView.findViewById(R.id.reviewDate);
+        reviewTime = (TextView) itemView.findViewById(R.id.reviewTime);
 
         itemView.setOnClickListener(this);
     }

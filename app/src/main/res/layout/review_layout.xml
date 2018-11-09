@@ -64,7 +64,26 @@
             android:textColor="@color/colorWhite"
             android:textSize="20dp"
             android:textStyle="bold" />
-
+        <TextView
+            android:id="@+id/reviewDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorWhite"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/reviewTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorWhite"
+            android:textSize="15dp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </RelativeLayout>

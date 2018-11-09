@@ -6,6 +6,8 @@ public class Review {
     private String rating;
     private String reviewer;
     private String tableId;
+    private String date;
+    private String time;
 
     public Review() {
     }
@@ -15,6 +17,22 @@ public class Review {
         this.rating = rating;
         this.reviewer = reviewer;
         this.tableId = tableId;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getComment() {
