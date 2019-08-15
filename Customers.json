@@ -1,51 +1,51 @@
 [
 	{
-		id: "1",
-    name: "Person 1",
-		address: "Teststreet 1, 3500 Hasselt",
-    phone: "0123456789",
-    imageUrl: "@drawable/logo"
+		"id": "1",
+    "name": "Person 1",
+		"address": "Teststreet 1, 3500 Hasselt",
+    "phone": "0123456789",
+    "imageUrl": "@drawable/logo"
 	},
 	{
-		id: "2",
-    name: "Person 2",
-		address: "Teststreet 2, 3500 Hasselt",
-    phone: "0123456789",
-    imageUrl: "@drawable/badkamer"
+		"id": "2",
+    "name": "Person 2",
+		"address": "Teststreet 2, 3500 Hasselt",
+    "phone": "0123456789",
+    "imageUrl": "@drawable/badkamer"
 	},
 	{
-		id: "3",
-    name: "Person 3",
-		address: "Teststreet 3, 3500 Hasselt",
-    phone: "0123456789",
-    imageUrl: "@drawable/logo"
+		"id": "3",
+    "name": "Person 3",
+		"address": "Teststreet 3, 3500 Hasselt",
+    "phone": "0123456789",
+    "imageUrl": "@drawable/logo"
 	},
 	{
-		id: "4",
-    name: "Person 4",
-		address: "Teststreet 4, 3500 Hasselt",
-    phone: "0123456789",
-    imageUrl: "@drawable/badkamer"
+		"id": "4",
+    "name": "Person 4",
+		"address": "Teststreet 4, 3500 Hasselt",
+    "phone": "0123456789",
+    "imageUrl": "@drawable/badkamer"
 	},
 	{
-		id: "5",
-    name: "Person 5",
-		address: "Teststreet 5, 3500 Hasselt",
-    phone: "0123456789",
-    imageUrl: "@drawable/logo"
+		"id": "5",
+    "name": "Person 5",
+		"address": "Teststreet 5, 3500 Hasselt",
+    "phone": "0123456789",
+    "imageUrl": "@drawable/logo"
 	},
 	{
-		id: "6",
-    name: "Person 6",
-		address: "Teststreet 6, 3500 Hasselt",
-    phone: "0123456789",
-    imageUrl: "@drawable/badkamer"
+		"id": "6",
+    "name": "Person 6",
+		"address": "Teststreet 6, 3500 Hasselt",
+    "phone": "0123456789",
+    "imageUrl": "@drawable/badkamer"
 	},
 	{
-		id: "7",
-    name: "Person 7",
-		address: "Teststreet 7, 3500 Hasselt",
-    phone: "0123456789",
-    imageUrl: "@drawable/logo"
+		"id": "7",
+    "name": "Person 7",
+		"address": "Teststreet 7, 3500 Hasselt",
+    "phone": "0123456789",
+    "imageUrl": "@drawable/logo"
 	}
 ]
